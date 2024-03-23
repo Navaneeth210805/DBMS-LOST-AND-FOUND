@@ -1,68 +1,64 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import Link from "next/link";
 
-const Page = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [message, setMessage] = useState("");
+const LoadingScreen = () => {
+  const [showFirstText, setShowFirstText] = useState(false);
+  const [showSecondText, setShowSecondText] = useState(false);
+  const [showThirdText, setShowThirdText] = useState(false);
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  useEffect(() => {
+    const firstTextTimeout = setTimeout(() => {
+      setShowFirstText(true);
+    }, 1000);
 
-    try {
-      const response = await fetch("http://127.0.0.1:8080/api/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded", // Ensure correct content type
-        },
-        body: new URLSearchParams({
-          // Convert form data to URLSearchParams format
-          username: username,
-          password: password,
-        }),
-      });
+    const secondTextTimeout = setTimeout(() => {
+      setShowSecondText(true);
+    }, 1500);
 
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
+    const thirdTextTimeout = setTimeout(() => {
+      setShowThirdText(true);
+    }, 2000); // Adjust the delay as needed
 
-      const data = await response.json();
-      setMessage(data.message);
-    } catch (error) {
-      console.error("Error:", error);
-      setMessage("Error registering user.");
-    }
-  };
+    return () => {
+      clearTimeout(firstTextTimeout);
+      clearTimeout(secondTextTimeout);
+      clearTimeout(thirdTextTimeout);
+    };
+  }, []);
 
   return (
-    <main >
-      <div>
-        <form onSubmit={handleSubmit}>
-          <p>
-            <b>User Login</b>
-          </p>
-          <p>
-            <input
-              type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              placeholder="Enter your username"
-            />
-          </p>
-          <p>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Enter your password"
-            />
-          </p>
-          <button type="submit">Submit</button>
-        </form>
-      </div>
-      <div>{message}</div>
-    </main>
+    <div className="loading-screen flex flex-col items-center justify-center p-10 m-10">
+      {showFirstText && (
+        <div className="falling-texts space-y-4 text-4xl text-purple-400 font-bold">
+          <div className="falling-text text-6xl md:text-7xl lg:text-8xl">
+            Welcome to IIITDM's
+          </div>
+        </div>
+      )}
+      {showSecondText && (
+        <div className="falling-texts space-y-4 text-4xl text-white font-bold">
+          <div className="falling-text2 text-5xl md:text-7xl lg:text-8xl p-5 m-8">
+            LOST AND FOUND PLATFORM
+          </div>
+        </div>
+      )}
+      {showThirdText && (
+        <div className="text-white font-bold lg:flex-row flex-col items-center justify-center">
+          <Link href="/signup">
+            <button className="falling-texts2 w-[300px] p-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 focus:outline-none focus:bg-purple-700 m-6">
+              Sign Up
+            </button>
+          </Link>
+          <Link href="/login">
+            <button className="falling-texts2 w-[300px] p-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 focus:outline-none focus:bg-purple-700 m-6">
+              Login
+            </button>
+          </Link>
+        </div>
+      )}
+    </div>
   );
 };
 
-export default Page;
+export default LoadingScreen;

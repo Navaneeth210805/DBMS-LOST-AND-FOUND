@@ -1,5 +1,47 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@keyframes fall {
+    0% {
+      opacity: 0;
+      transform: translateY(-50px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .falling-text {
+    animation: fall 0.5s ease forwards;
+  }
 
+  .falling-text2 {
+    animation : fall 1s ease forwards;
+  }
+
+
+
+.rising-element {
+  animation: rise 1s ease forwards; /* Use the animation */
+}
+  
+
+
+
+ body {
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+    animation: gradient 8s ease infinite;
+    background-size: 400% 400%;
+    background-attachment: fixed;
+}
+
+
+
+
+  
+  
 
