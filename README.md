@@ -8,7 +8,8 @@ To get started with this on your local system :
 
 Requirements/Commands to be downloaded/executed in client directory:
 1. npm i
-2. npm run dev (To start the development server)
+2. npm install tailwindcss
+4. npm run dev (To start the development server)
 
 Requirements/Commands to be downloaded/executed in server directory:
 1. pip install flask
