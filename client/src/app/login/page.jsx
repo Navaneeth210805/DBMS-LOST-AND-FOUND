@@ -1,10 +1,21 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
 
 const LoginPage = () => {
-  const [username, setUsername] = useState("");
+  const [rollno, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    // Simulate loading with a delay
+    const timeout = setTimeout(() => {
+      setLoaded(true);
+    }, 500);
+
+    return () => clearTimeout(timeout);
+  }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -17,7 +28,7 @@ const LoginPage = () => {
         },
         body: new URLSearchParams({
           // Convert form data to URLSearchParams format
-          rollno: username,
+          rollno: rollno,
           password: password,
         }),
       });
@@ -35,41 +46,48 @@ const LoginPage = () => {
   };
 
   return (
-    <main className="min-h-screen flex items-center justify-center">
-      <div className="p-8 bg-white rounded-xl shadow-md w-full max-w-md">
-        <div className="mb-10 text-center text-4xl text-purple-600">
-          TRACKNTRACE
-        </div>
+    <main
+      className={`min-h-screen flex items-center justify-center ${
+        loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+      }`}
+    >
+      <div className="p-8 bg-white rounded-xl shadow-md w-full max-w-sm md:max-w-md lg:max-w-md xl:max-w-md transform transition-transform duration-500">
+        <div className="mb-10 text-center text-4xl text-purple-600">LOGIN</div>
         <form onSubmit={handleSubmit}>
           <p>
-            <b>User Login</b>
-          </p>
-          <p>
+            <label htmlFor="text" className="p-1">
+              Roll Number
+            </label>
             <input
               type="text"
-              value={username}
+              value={rollno}
               onChange={(e) => setUsername(e.target.value)}
-              placeholder="Enter your Roll No"
-              className="w-full px-3 py-2 border border-purple-500 rounded-lg focus:outline-none focus:border-purple-700"
+              placeholder="Enter your username"
+              className="w-full p-3 border border-purple-500 rounded-lg focus:outline-none focus:border-purple-700 my-2"
             />
           </p>
           <p>
+            <label htmlFor="text" className="p-1">
+              Password
+            </label>
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Enter your password"
-              className="w-full px-3 py-2 border border-purple-500 rounded-lg focus:outline-none focus:border-purple-700"
+              className="w-full p-3 my-2 border border-purple-500 rounded-lg focus:outline-none focus:border-purple-700"
             />
           </p>
-          <button
-            type="submit"
-            className="w-full py-2 px-4 bg-purple-600 text-white rounded-lg hover:bg-purple-700 focus:outline-none focus:bg-purple-700"
-          >
-            Submit
-          </button>
+          {/* <Link href={"/home"}> */}
+            <button
+              type="submit"
+              className="w-full py-2 px-4 bg-purple-600 text-white rounded-lg hover:bg-purple-700 focus:outline-none focus:bg-purple-700 p-3 my-2"
+            >
+              Submit
+            </button>
+          {/* </Link> */}
         </form>
-          <div>{message}</div>
+        <div className="flex justify-center items-center">{message}</div>
       </div>
     </main>
   );
