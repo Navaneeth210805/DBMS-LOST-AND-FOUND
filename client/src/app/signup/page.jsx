@@ -38,10 +38,6 @@ const LoginPage = () => {
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
-      else
-      {
-        alert("User succesfully created")
-      }
 
       const data = await response.json();
       setMessage(data.message);
@@ -168,7 +164,14 @@ const LoginPage = () => {
             </button>
           {/* </Link> */}
         </form>
-        <div>{message}</div>
+        <div className="flex justify-center item-center">{message}</div>
+         {message === "User registered successfully" && (
+          <Link href="/login">
+            <div className="flex justify-center item-center hover:text-purple-700">
+              Click to Login
+            </div>
+          </Link>
+        )}
       </div>
     </main>
   );
