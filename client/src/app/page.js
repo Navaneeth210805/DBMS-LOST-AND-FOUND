@@ -38,7 +38,7 @@ const LoadingScreen = () => {
       )}
       {showSecondText && (
         <div className="falling-texts space-y-4 text-4xl text-white font-bold">
-          <div className="falling-text2 text-5xl md:text-7xl lg:text-8xl p-5 m-8">
+          <div className="falling-text2 text-5xl md:text-7xl lg:text-8xl p-1 my-8">
             LOST AND FOUND PLATFORM
           </div>
         </div>

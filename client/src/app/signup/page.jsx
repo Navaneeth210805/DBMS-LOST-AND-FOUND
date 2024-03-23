@@ -42,95 +42,121 @@ const LoginPage = () => {
 
   return (
     <main className="min-h-screen flex items-center justify-center">
-      <div className="p-8 bg-white rounded-xl shadow-md w-full max-w-md">
+      <div className="p-8 bg-white rounded-xl shadow-md w-full max-w-sm md:max-w-md lg:max-w-md xl:max-w-md transform transition-transform duration-500">
         <div className="mb-10 text-center text-4xl text-purple-600">
-          TRACKNTRACE
+          SIGN UP
         </div>
         <form onSubmit={handleSubmit}>
           <p>
-            <b>User Login</b>
-          </p>
-          <p>
+            <label htmlFor="text" className="p-1">
+              Username
+            </label>
             <input
               type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               placeholder="Enter your username"
-              className="w-full px-3 py-2 border border-purple-500 rounded-lg focus:outline-none focus:border-purple-700"
+              className="w-full px-3 py-2 border border-purple-500 rounded-lg focus:outline-none focus:border-purple-700 my-2"
+              required
             />
           </p>
           <p>
+            <label htmlFor="text" className="p-1">
+              Password
+            </label>
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Enter your password"
-              className="w-full px-3 py-2 border border-purple-500 rounded-lg focus:outline-none focus:border-purple-700"
+              className="w-full px-3 py-2 border border-purple-500 rounded-lg focus:outline-none focus:border-purple-700 my-2"
+              required
             />
           </p>
           <p>
+            <label htmlFor="text" className="p-1">
+              First Name
+            </label>
             <input
               type="text"
               value={fname}
               onChange={(e) => setFname(e.target.value)}
               placeholder="Enter your First Name"
-              className="w-full px-3 py-2 border border-purple-500 rounded-lg focus:outline-none focus:border-purple-700"
+              className="w-full px-3 py-2 border border-purple-500 rounded-lg focus:outline-none focus:border-purple-700 my-2"
+              required
             />
           </p>
           <p>
+            <label htmlFor="text" className="p-1">
+              Middle Name
+            </label>
             <input
               type="text"
               value={mname}
               onChange={(e) => setMname(e.target.value)}
               placeholder="Enter your Middle Name"
-              className="w-full px-3 py-2 border border-purple-500 rounded-lg focus:outline-none focus:border-purple-700"
+              className="w-full px-3 py-2 border border-purple-500 rounded-lg focus:outline-none focus:border-purple-700 my-2"
             />
           </p>
           <p>
+            <label htmlFor="text" className="p-1">
+              Last Name
+            </label>
             <input
               type="text"
               value={lname}
               onChange={(e) => setLname(e.target.value)}
               placeholder="Enter your Last Name"
-              className="w-full px-3 py-2 border border-purple-500 rounded-lg focus:outline-none focus:border-purple-700"
+              className="w-full px-3 py-2 border border-purple-500 rounded-lg focus:outline-none focus:border-purple-700 my-2"
+              required
             />
           </p>
           <p>
+            <label htmlFor="text" className="p-1">
+              E Mail
+            </label>
             <input
-              type="text"
+              type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your E-Mail Address"
-              className="w-full px-3 py-2 border border-purple-500 rounded-lg focus:outline-none focus:border-purple-700"
+              className="w-full px-3 py-2 border border-purple-500 rounded-lg focus:outline-none focus:border-purple-700 my-2"
             />
           </p>
           <p>
+            <label htmlFor="text" className="p-1">
+              Roll Number
+            </label>
             <input
               type="text"
               value={rollno}
               onChange={(e) => setRollno(e.target.value)}
               placeholder="Enter your Roll Number"
-              className="w-full px-3 py-2 border border-purple-500 rounded-lg focus:outline-none focus:border-purple-700"
+              className="w-full px-3 py-2 border border-purple-500 rounded-lg focus:outline-none focus:border-purple-700 my-2"
             />
           </p>
           <p>
+            <label htmlFor="text" className="p-1">
+              Phone Number
+            </label>
             <input
-              type="text"
+              type="number"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               placeholder="Enter your Phone Number"
-              className="w-full px-3 py-2 border border-purple-500 rounded-lg focus:outline-none focus:border-purple-700"
+              className="w-full px-3 py-2 border border-purple-500 rounded-lg focus:outline-none focus:border-purple-700 my-2"
+              inputMode="numeric"
             />
           </p>
           <button
             type="submit"
-            className="w-full py-2 px-4 bg-purple-600 text-white rounded-lg hover:bg-purple-700 focus:outline-none focus:bg-purple-700"
+            className="w-full p-2 my-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 focus:outline-none focus:bg-purple-700"
           >
             Submit
           </button>
         </form>
+        <div>{message}</div>
       </div>
-      <div>{message}</div>
     </main>
   );
 };
