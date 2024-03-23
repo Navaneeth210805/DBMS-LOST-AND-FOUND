@@ -18,7 +18,7 @@ const LoadingScreen = () => {
 
     const thirdTextTimeout = setTimeout(() => {
       setShowThirdText(true);
-    }, 2000); // Adjust the delay as needed
+    }, 2000);
 
     return () => {
       clearTimeout(firstTextTimeout);
