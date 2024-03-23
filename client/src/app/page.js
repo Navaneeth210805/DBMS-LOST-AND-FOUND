@@ -28,7 +28,7 @@ const LoadingScreen = () => {
   }, []);
 
   return (
-    <div className="loading-screen flex flex-col items-center justify-center p-10 m-10">
+    <div className="loading-screen flex flex-col items-center justify-center h-screen p-10 m-10">
       {showFirstText && (
         <div className="falling-texts space-y-4 text-4xl text-purple-400 font-bold">
           <div className="falling-text text-6xl md:text-7xl lg:text-8xl">

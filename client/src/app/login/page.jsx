@@ -88,6 +88,11 @@ const LoginPage = () => {
           {/* </Link> */}
         </form>
         <div className="flex justify-center items-center">{message}</div>
+        {message === "Login Successful" && (
+          <Link href="/home">
+            <div className="flex justify-center item-center hover:text-purple-400">Click to go further</div>
+          </Link>
+        )}
       </div>
     </main>
   );
