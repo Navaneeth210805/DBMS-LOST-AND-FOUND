@@ -1,21 +1,10 @@
 "use client";
-import React, { useState, useEffect } from "react";
-import Link from "next/link";
+import React, { useState } from "react";
 
 const LoginPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
-  const [loaded, setLoaded] = useState(false);
-
-  useEffect(() => {
-    // Simulate loading with a delay
-    const timeout = setTimeout(() => {
-      setLoaded(true);
-    }, 500);
-
-    return () => clearTimeout(timeout);
-  }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -28,7 +17,7 @@ const LoginPage = () => {
         },
         body: new URLSearchParams({
           // Convert form data to URLSearchParams format
-          username: username,
+          rollno: username,
           password: password,
         }),
       });
@@ -46,48 +35,41 @@ const LoginPage = () => {
   };
 
   return (
-    <main
-      className={`min-h-screen flex items-center justify-center ${
-        loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-      }`}
-    >
-      <div className="p-8 bg-white rounded-xl shadow-md w-full max-w-sm md:max-w-md lg:max-w-md xl:max-w-md transform transition-transform duration-500">
-        <div className="mb-10 text-center text-4xl text-purple-600">LOGIN</div>
+    <main className="min-h-screen flex items-center justify-center">
+      <div className="p-8 bg-white rounded-xl shadow-md w-full max-w-md">
+        <div className="mb-10 text-center text-4xl text-purple-600">
+          TRACKNTRACE
+        </div>
         <form onSubmit={handleSubmit}>
           <p>
-            <label htmlFor="text" className="p-1">
-              Username
-            </label>
+            <b>User Login</b>
+          </p>
+          <p>
             <input
               type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              placeholder="Enter your username"
-              className="w-full p-3 border border-purple-500 rounded-lg focus:outline-none focus:border-purple-700 my-2"
+              placeholder="Enter your Roll No"
+              className="w-full px-3 py-2 border border-purple-500 rounded-lg focus:outline-none focus:border-purple-700"
             />
           </p>
           <p>
-            <label htmlFor="text" className="p-1">
-              Password
-            </label>
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Enter your password"
-              className="w-full p-3 my-2 border border-purple-500 rounded-lg focus:outline-none focus:border-purple-700"
+              className="w-full px-3 py-2 border border-purple-500 rounded-lg focus:outline-none focus:border-purple-700"
             />
           </p>
-          <Link href={"/home"}>
-            <button
-              type="submit"
-              className="w-full py-2 px-4 bg-purple-600 text-white rounded-lg hover:bg-purple-700 focus:outline-none focus:bg-purple-700 p-3 my-2"
-            >
-              Submit
-            </button>
-          </Link>
+          <button
+            type="submit"
+            className="w-full py-2 px-4 bg-purple-600 text-white rounded-lg hover:bg-purple-700 focus:outline-none focus:bg-purple-700"
+          >
+            Submit
+          </button>
         </form>
-        <div className="flex justify-center items-center">{message}</div>
+          <div>{message}</div>
       </div>
     </main>
   );
