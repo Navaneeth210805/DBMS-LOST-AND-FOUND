@@ -17,7 +17,7 @@ const LoginPage = () => {
     event.preventDefault();
 
     try {
-      const response = await fetch("http://127.0.0.1:8080/api/register", {
+      const response = await fetch("http://127.0.0.1:8080/api/register1", {
         method: "POST",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded", // Ensure correct content type
@@ -26,11 +26,21 @@ const LoginPage = () => {
           // Convert form data to URLSearchParams format
           username: username,
           password: password,
+          fname: fname,
+          mname: mname,
+          lname: lname,
+          email: email,
+          roll_no: rollno,
+          phone_no: phone
         }),
       });
 
       if (!response.ok) {
         throw new Error("Network response was not ok");
+      }
+      else
+      {
+        alert("User succesfully created")
       }
 
       const data = await response.json();
@@ -149,14 +159,14 @@ const LoginPage = () => {
               inputMode="numeric"
             />
           </p>
-          <Link href="/">
+          {/* <Link href="/"> */}
             <button
               type="submit"
               className="w-full p-2 my-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 focus:outline-none focus:bg-purple-700"
             >
               Submit
             </button>
-          </Link>
+          {/* </Link> */}
         </form>
         <div>{message}</div>
       </div>

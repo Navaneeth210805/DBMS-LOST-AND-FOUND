@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 
 const LoginPage = () => {
-  const [username, setUsername] = useState("");
+  const [rollno, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
   const [loaded, setLoaded] = useState(false);
@@ -28,7 +28,7 @@ const LoginPage = () => {
         },
         body: new URLSearchParams({
           // Convert form data to URLSearchParams format
-          username: username,
+          rollno: rollno,
           password: password,
         }),
       });
@@ -56,11 +56,11 @@ const LoginPage = () => {
         <form onSubmit={handleSubmit}>
           <p>
             <label htmlFor="text" className="p-1">
-              Username
+              Roll Number
             </label>
             <input
               type="text"
-              value={username}
+              value={rollno}
               onChange={(e) => setUsername(e.target.value)}
               placeholder="Enter your username"
               className="w-full p-3 border border-purple-500 rounded-lg focus:outline-none focus:border-purple-700 my-2"
@@ -78,14 +78,14 @@ const LoginPage = () => {
               className="w-full p-3 my-2 border border-purple-500 rounded-lg focus:outline-none focus:border-purple-700"
             />
           </p>
-          <Link href={"/home"}>
+          {/* <Link href={"/home"}> */}
             <button
               type="submit"
               className="w-full py-2 px-4 bg-purple-600 text-white rounded-lg hover:bg-purple-700 focus:outline-none focus:bg-purple-700 p-3 my-2"
             >
               Submit
             </button>
-          </Link>
+          {/* </Link> */}
         </form>
         <div className="flex justify-center items-center">{message}</div>
       </div>

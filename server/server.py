@@ -7,24 +7,80 @@ CORS(app)
 
 # Connect to MongoDB
 client = MongoClient('localhost', 27017)
-db = client['flask_database']
-users = db['users']
+db = client.flask_database
 
 # Route to handle POST requests for user registration
-
-
 @app.route("/api/register", methods=["POST"])
 def register():
+    login_details = db['login_details']
+    try:
+        # Extract username and password from form data
+        rollno = request.form.get('rollno')
+        password = request.form.get('password')
+
+        # Check if username and password are not None or empty strings
+        if rollno is not None and password is not None and rollno.strip() and password.strip():
+            # Insert user data into the database
+
+            data=db.login_details.find_one({"RollNo":rollno, "Password":password})
+            print(data)
+            if(data):
+                return jsonify({"message": "Login Successful"})
+            else:
+                return jsonify({"message":"Incorrect Username or Password"})
+        else:
+            return jsonify({"message": "Invalid username or password"}), 400
+    except Exception as e:  
+        return jsonify({"message": "An error occurred while processing the request", "error": str(e)}), 500
+    
+@app.route("/api/register1", methods=["POST"])
+def register1():
+    login_details = db['login_details']
+    Student = db['student']
     try:
         # Extract username and password from form data
         username = request.form.get('username')
         password = request.form.get('password')
+        fname = request.form.get('fname')
+        mname = request.form.get('mname')
+        lname = request.form.get('lname')
+        email = request.form.get('email')
+        phone = request.form.get('phone_no')
+        rollno = request.form.get("roll_no")
+
+        data=db.student.find_one({"RollNo":rollno})
+        print(data)
+        if(data):
+            return jsonify({"message": "Roll Number already exists", "user_id": str(user_id)})
+
 
         # Check if username and password are not None or empty strings
-        if username is not None and password is not None and username.strip() and password.strip():
+        if (username is not None and username.strip() and
+            password is not None and password.strip() and
+            fname is not None and fname.strip() and
+            lname is not None and lname.strip() and
+            email is not None and email.strip() and
+            phone is not None and phone.strip() and
+            rollno is not None and rollno.strip()):
             # Insert user data into the database
-            user_id = users.insert_one(
-                {'username': username, 'password': password}).inserted_id
+            user_id=login_details.insert_one(
+                {
+                    "RollNo" : rollno,
+                    "Password" : password
+                }
+            ).inserted_id
+
+            user_id=Student.insert_one(
+                {
+                    "RollNo" : rollno,
+                    "FirstName" : fname,
+                    "MiddleName": mname,
+                    "LastName": lname,
+                    "Email": email,
+                    "PhoneNo" :phone
+                }
+            ).inserted_id
+
             return jsonify({"message": "User registered successfully", "user_id": str(user_id)})
         else:
             return jsonify({"message": "Invalid username or password"}), 400
@@ -49,5 +105,5 @@ if __name__ == "__main__":
 #         return jsonify({"message": "Form data saved successfully"})
 #     else:
 #         return jsonify({"message": "Invalid request method"})
-# if __name__ == "__main__":
+# if _name_ == "_main_":
 #     app.run(debug=True, port=8080)
