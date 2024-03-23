@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 
 const LoginPage = () => {
   const [username, setUsername] = useState("");
@@ -77,12 +78,14 @@ const LoginPage = () => {
               className="w-full p-3 my-2 border border-purple-500 rounded-lg focus:outline-none focus:border-purple-700"
             />
           </p>
-          <button
-            type="submit"
-            className="w-full py-2 px-4 bg-purple-600 text-white rounded-lg hover:bg-purple-700 focus:outline-none focus:bg-purple-700 p-3 my-2"
-          >
-            Submit
-          </button>
+          <Link href={"/home"}>
+            <button
+              type="submit"
+              className="w-full py-2 px-4 bg-purple-600 text-white rounded-lg hover:bg-purple-700 focus:outline-none focus:bg-purple-700 p-3 my-2"
+            >
+              Submit
+            </button>
+          </Link>
         </form>
         <div className="flex justify-center items-center">{message}</div>
       </div>

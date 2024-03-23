@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import Link from "next/link";
 
 const LoginPage = () => {
   const [username, setUsername] = useState("");
@@ -148,12 +149,14 @@ const LoginPage = () => {
               inputMode="numeric"
             />
           </p>
-          <button
-            type="submit"
-            className="w-full p-2 my-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 focus:outline-none focus:bg-purple-700"
-          >
-            Submit
-          </button>
+          <Link href="/">
+            <button
+              type="submit"
+              className="w-full p-2 my-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 focus:outline-none focus:bg-purple-700"
+            >
+              Submit
+            </button>
+          </Link>
         </form>
         <div>{message}</div>
       </div>
