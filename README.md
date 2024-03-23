@@ -4,7 +4,7 @@ To get started with this on your local system :
 1. Download MongoDB community edition as Service from (msi) : https://www.mongodb.com/try/download/community
 2. Download MongoDB Shell from (msi) : https://www.mongodb.com/try/download/shell
 3. Download MongoDB Compass(GUI) from : https://www.mongodb.com/try/download/compass
-
+4. Fork this repository and clone it in your local device
 
 Requirements/Commands to be downloaded/executed in client directory:
 1. npm i
