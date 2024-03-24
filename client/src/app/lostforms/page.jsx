@@ -10,46 +10,83 @@ const LostForm = () => {
   const [ldate, setDate] = useState("");
   const [itemtype, setItemtype] = useState("");
   const [itemdescription, setItemdescription] = useState("");
+  const [file, setFile] = useState(null);
 
   const [message, setMessage] = useState("");
 
+  const handleFileChange = (selectedFile) => {
+    setFile(selectedFile);
+  };
+  
   const handleSubmit = async (event) => {
     event.preventDefault();
+    if(file!=null)
+    {
+      let image_data=file
+      let reader=new FileReader();
 
+      reader.onload = function() {
+        var image_data = reader.result;
+
+        const form_data = {
+          email: email,
+          phone_no: phone,
+          roll_no: rollno,
+          location: location,
+          ldate: ldate,
+          itemtype: itemtype,
+          itemdescription: itemdescription,
+          image: image_data
+        };
+
+        sendFormData(form_data);
+      };
+
+      reader.readAsDataURL(image_data)
+    }
+    else
+    {
+      const form_data = {
+        email: email,
+        phone_no: phone,
+        roll_no: rollno,
+        location: location,
+        ldate: ldate,
+        itemtype: itemtype,
+        itemdescription: itemdescription,
+        image: "null"
+      };
+
+      sendFormData(form_data);
+    }
+  }
+    
+    async function sendFormData(form_data){
     try {
-      const response = await fetch("http://127.0.0.1:8080/api/register1", {
+      const response = await fetch("http://127.0.0.1:8080/api/register2", {
         method: "POST",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded", // Ensure correct content type
         },
-        body: new URLSearchParams({
-          // Convert form data to URLSearchParams format
-          username: username,
-          password: password,
-          fname: fname,
-          mname: mname,
-          lname: lname,
-          email: email,
-          roll_no: rollno,
-          phone_no: phone,
-        }),
+        body: new URLSearchParams(form_data),
       });
-
+  
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
-
+  
       const data = await response.json();
       setMessage(data.message);
     } catch (error) {
       console.error("Error:", error);
-      setMessage("Error registering user.");
+      setMessage("Error submitting form.");
     }
   };
 
+
   return (
     <main className="min-h-screen flex items-center justify-center">
-      <div className="p-8 bg-white rounded-xl shadow-md w-full max-w-sm md:max-w-md lg:max-w-md xl:max-w-md transform transition-transform duration-500">
+      <div className="p-8 bg-white rounded-xl mt-6 mb-6 shadow-md w-full max-w-sm md:max-w-md lg:max-w-md xl:max-w-md transform transition-transform duration-500">
         <div className="mb-10 text-center text-4xl text-purple-600">
           LOST ITEMS FORMS
         </div>
@@ -98,7 +135,7 @@ const LostForm = () => {
             </label>
             <input
               type="text"
-              value={phone}
+              value={location}
               onChange={(e) => setLocation(e.target.value)}
               placeholder="Enter the Location Last Seen"
               className="w-full px-3 py-2 border border-purple-500 rounded-lg focus:outline-none focus:border-purple-700 my-2"
@@ -152,13 +189,11 @@ const LostForm = () => {
             </label>
             <input
               type="file"
-              value={itemtype}
-              onChange={(e) => setItemtype(e.target.value)}
-              placeholder="Enter the category/type of the item(Book,keychain etc)"
-              className="w-full px-3 py-2 border border-purple-500 rounded-lg focus:outline-none focus:border-purple-700 my-2"
-              inputMode="numeric"
+              onChange={(e) => handleFileChange(e.target.files[0])}
               accept="image/*"
             />
+
+
           </p>
 
           {/* <Link href="/"> */}

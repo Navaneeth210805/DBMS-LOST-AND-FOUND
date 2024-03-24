@@ -6,8 +6,10 @@ app = Flask(__name__)
 CORS(app)
 
 # Connect to MongoDB
-client = MongoClient(
-    "mongodb+srv://Harshith:cs22b2015@cluster0.kjanzgj.mongodb.net/")
+
+
+
+client = MongoClient("mongodb+srv://navaneethakrishnan2108:rama2005@cluster0.kjanzgj.mongodb.net/")
 db = client.flask_database
 
 # Route to handle POST requests for user registration
@@ -88,6 +90,49 @@ def register1():
             return jsonify({"message": "User registered successfully", "user_id": str(user_id)})
         else:
             return jsonify({"message": "Invalid username or password"}), 400
+    except Exception as e:
+        return jsonify({"message": "An error occurred while processing the request", "error": str(e)}), 500
+
+
+@app.route("/api/register2", methods=["POST"])
+def register2():
+    LostItems = db['lost_items']
+    try:
+        # Extract username and password from form data
+        email = request.form.get('email')
+        phone = request.form.get('phone_no')
+        rollno = request.form.get("roll_no")
+        location = request.form.get("location")
+        ldate = request.form.get("ldate")
+        itemtype = request.form.get("itemtype")
+        itemdescription = request.form.get("itemdescription")
+        image_data=request.form.get("image")
+
+
+        if (email is not None and email.strip() and
+            phone is not None and phone.strip() and
+            rollno is not None and rollno.strip() and
+            location is not None and location.strip() and
+            ldate is not None and ldate.strip() and
+            itemtype is not None and itemtype.strip() and
+            itemdescription is not None and itemdescription.strip()):
+
+            lost_item_id = LostItems.insert_one(
+                {
+                    "Email": email,
+                    "PhoneNo": phone,
+                    "RollNo": rollno,
+                    "Location": location,
+                    "DateLost": ldate,
+                    "ItemType": itemtype,
+                    "ItemDescription": itemdescription,
+                    "Image": image_data
+                }
+            ).inserted_id
+
+            return jsonify({"message": "Lost Item registered successfully", "user_id": str(lost_item_id)})
+        else:
+            return jsonify({"message": "Invalid registration"}), 400
     except Exception as e:
         return jsonify({"message": "An error occurred while processing the request", "error": str(e)}), 500
 
