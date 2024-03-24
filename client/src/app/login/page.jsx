@@ -52,7 +52,7 @@ const LoginPage = () => {
       }`}
     >
       <div className="p-8 bg-white rounded-xl shadow-md w-full max-w-sm md:max-w-md lg:max-w-md xl:max-w-md transform transition-transform duration-500">
-        <div className="mb-10 text-center text-4xl text-purple-600">LOGIN</div>
+        <div className="mb-10 text-center text-4xl text-indigo-800">LOGIN</div>
         <form onSubmit={handleSubmit}>
           <p>
             <label htmlFor="text" className="p-1">
@@ -63,7 +63,7 @@ const LoginPage = () => {
               value={rollno}
               onChange={(e) => setUsername(e.target.value)}
               placeholder="Enter your username"
-              className="w-full p-3 border border-purple-500 rounded-lg focus:outline-none focus:border-purple-700 my-2"
+              className="w-full p-3 border-2 border-indigo-500 rounded-lg focus:outline-none focus:border-indigo-800 my-2"
             />
           </p>
           <p>
@@ -75,22 +75,25 @@ const LoginPage = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Enter your password"
-              className="w-full p-3 my-2 border border-purple-500 rounded-lg focus:outline-none focus:border-purple-700"
+              className="w-full p-3 my-2 border-2 border-indigo-500 rounded-lg focus:outline-none focus:border-indigo-800"
             />
           </p>
           {/* <Link href={"/home"}> */}
             <button
               type="submit"
-              className="w-full py-2 px-4 bg-purple-600 text-white rounded-lg hover:bg-purple-700 focus:outline-none focus:bg-purple-700 p-3 my-2"
+              className="w-full py-2 px-4 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 focus:outline-none focus:bg-purple-700 p-3 my-2"
             >
               Submit
             </button>
           {/* </Link> */}
         </form>
+        <Link href = "/">
+          <div className="flex justify-center items-center hover:text-indigo-700 text-xl font-medium">Return to HomePage</div>
+        </Link>
         <div className="flex justify-center items-center">{message}</div>
         {message === "Login Successful" && (
           <Link href="/home">
-            <div className="flex justify-center item-center hover:text-purple-400">Click to go further</div>
+            <div className="flex justify-center item-center hover:text-indigo-500">Click to go further</div>
           </Link>
         )}
       </div>

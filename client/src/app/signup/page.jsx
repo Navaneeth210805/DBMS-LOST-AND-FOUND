@@ -49,8 +49,8 @@ const LoginPage = () => {
 
   return (
     <main className="min-h-screen flex items-center justify-center">
-      <div className="p-8 bg-white rounded-xl shadow-md w-full max-w-sm md:max-w-md lg:max-w-md xl:max-w-md transform transition-transform duration-500">
-        <div className="mb-10 text-center text-4xl text-purple-600">
+      <div className="p-8 bg-white mt-6 mb-6 rounded-xl shadow-2xl w-full max-w-sm md:max-w-md lg:max-w-md xl:max-w-md transform transition-transform duration-500">
+        <div className="mb-10 text-center text-4xl text-indigo-800">
           SIGN UP
         </div>
         <form onSubmit={handleSubmit}>
@@ -63,7 +63,7 @@ const LoginPage = () => {
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               placeholder="Enter your username"
-              className="w-full px-3 py-2 border border-purple-500 rounded-lg focus:outline-none focus:border-purple-700 my-2"
+              className="w-full px-3 py-2 border-2 border-indigo-500 ring-offset-2 rounded-lg focus:outline-none focus:border-purple-700 my-2"
               required
             />
           </p>
@@ -76,7 +76,7 @@ const LoginPage = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Enter your password"
-              className="w-full px-3 py-2 border border-purple-500 rounded-lg focus:outline-none focus:border-purple-700 my-2"
+              className="w-full px-3 py-2 border-2 border-indigo-500 rounded-lg focus:outline-none focus:border-purple-700 my-2"
               required
             />
           </p>
@@ -89,7 +89,7 @@ const LoginPage = () => {
               value={fname}
               onChange={(e) => setFname(e.target.value)}
               placeholder="Enter your First Name"
-              className="w-full px-3 py-2 border border-purple-500 rounded-lg focus:outline-none focus:border-purple-700 my-2"
+              className="w-full px-3 py-2 border-2 border-indigo-500 rounded-lg focus:outline-none focus:border-purple-700 my-2"
               required
             />
           </p>
@@ -102,7 +102,7 @@ const LoginPage = () => {
               value={mname}
               onChange={(e) => setMname(e.target.value)}
               placeholder="Enter your Middle Name"
-              className="w-full px-3 py-2 border border-purple-500 rounded-lg focus:outline-none focus:border-purple-700 my-2"
+              className="w-full px-3 py-2 border-2 border-indigo-500 rounded-lg focus:outline-none focus:border-purple-700 my-2"
             />
           </p>
           <p>
@@ -114,20 +114,20 @@ const LoginPage = () => {
               value={lname}
               onChange={(e) => setLname(e.target.value)}
               placeholder="Enter your Last Name"
-              className="w-full px-3 py-2 border border-purple-500 rounded-lg focus:outline-none focus:border-purple-700 my-2"
+              className="w-full px-3 py-2 border-2 border-indigo-500 rounded-lg focus:outline-none focus:border-purple-700 my-2"
               required
             />
           </p>
           <p>
             <label htmlFor="text" className="p-1">
-              E Mail
+              E-Mail
             </label>
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your E-Mail Address"
-              className="w-full px-3 py-2 border border-purple-500 rounded-lg focus:outline-none focus:border-purple-700 my-2"
+              className="w-full px-3 py-2 border-2 border-indigo-500 rounded-lg focus:outline-none focus:border-purple-700 my-2"
             />
           </p>
           <p>
@@ -139,7 +139,7 @@ const LoginPage = () => {
               value={rollno}
               onChange={(e) => setRollno(e.target.value)}
               placeholder="Enter your Roll Number"
-              className="w-full px-3 py-2 border border-purple-500 rounded-lg focus:outline-none focus:border-purple-700 my-2"
+              className="w-full px-3 py-2 border-2 border-indigo-500 rounded-lg focus:outline-none focus:border-purple-700 my-2"
             />
           </p>
           <p>
@@ -151,20 +151,23 @@ const LoginPage = () => {
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               placeholder="Enter your Phone Number"
-              className="w-full px-3 py-2 border border-purple-500 rounded-lg focus:outline-none focus:border-purple-700 my-2"
+              className="w-full px-3 py-2 border-2 border-indigo-500 rounded-lg focus:outline-none focus:border-purple-700 my-2"
               inputMode="numeric"
             />
           </p>
           {/* <Link href="/"> */}
             <button
               type="submit"
-              className="w-full p-2 my-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 focus:outline-none focus:bg-purple-700"
+              className="w-full p-2 my-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 focus:outline-none focus:bg-purple-700"
             >
               Submit
             </button>
           {/* </Link> */}
         </form>
         <div className="flex justify-center item-center">{message}</div>
+        <Link href={"/"}>
+          <div className="flex justify-center items-center hover:text-indigo-500 font-bold">Return to HomePage</div>
+        </Link>
          {message === "User registered successfully" && (
           <Link href="/login">
             <div className="flex justify-center item-center hover:text-purple-700">
