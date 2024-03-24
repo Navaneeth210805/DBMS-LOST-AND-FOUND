@@ -13,12 +13,12 @@ const Navbar = () => {
     <main>
       <nav className="lg:flex lg:flex-row justify-center m-4 p-4">
         <div className="hidden lg:flex items-center">
-          <Image src={"/iiitdm.jpeg"} alt="Logo" width={100} height={40} />{" "}
+          <Image src={"/iiitdm.jpeg"} alt="Logo" width={50} height={20} />{" "}
           <div className="h-full border-l border-purple-700 mx-4"></div>
         </div>
         {/* Desktop view */}
         <div className="hidden lg:flex items-center">
-          <h1 className="text-white">HOME</h1>
+          <h1 className="text-white">FORMS</h1>
           <div className="h-full border-l border-purple-700 mx-4"></div>
         </div>
         <div className="hidden lg:flex items-center">
@@ -42,7 +42,7 @@ const Navbar = () => {
         </div>
 
         {/* Mobile view */}
-        <div className="lg:hidden flex items-center">
+        <div className="lg:hidden flex items-center justify-between">
           <button onClick={toggleMenu}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -71,17 +71,19 @@ const Navbar = () => {
           <Image
             src={"/iiitdm.jpeg"}
             alt="Logo"
-            width={40}
-            height={40}
-            className="flex items-center justify-center"
+            width={100}
+            height={100}
+            className="justify-content items-center"
           />
+          <div className="text-transparent">" " </div>
         </div>
       </nav>
 
       {/* Mobile dropdown */}
       {isOpen && (
-        <div className="lg:hidden">
+        <div className="lg:hidden top-16 w-full">
           <div className="flex flex-col items-center mt-4">
+            <h1 className="text-white mb-2">FORMS</h1>
             <h1 className="text-white mb-2">LOST ITEMS</h1>
             <h1 className="text-white mb-2">FOUND ITEMS</h1>
             <h1 className="text-white mb-2">HISTORY</h1>
