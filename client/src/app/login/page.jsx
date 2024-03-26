@@ -81,7 +81,7 @@ const LoginPage = () => {
           {/* <Link href={"/home"}> */}
             <button
               type="submit"
-              className="w-full py-2 px-4 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 focus:outline-none focus:bg-purple-700 p-3 my-2"
+              className="w-full py-2 px-4 bg-indigo-600 text-xl font-medium text-white rounded-lg hover:bg-indigo-700 focus:outline-none focus:bg-purple-700 p-3 my-2"
             >
               Submit
             </button>

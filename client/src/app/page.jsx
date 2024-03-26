@@ -30,7 +30,7 @@ const LoadingScreen = () => {
   return (
     <div className="loading-screen flex flex-col items-center justify-center p-10 m-10">
       {showFirstText && (
-        <div className="falling-texts space-y-4 text-4xl text-indigo-800 font-bold">
+        <div className="falling-texts space-y-4 text-4xl text-indigo-500 font-bold">
           <div className="falling-text text-6xl md:text-7xl lg:text-8xl">
             Welcome to IIITDM's
           </div>
@@ -46,12 +46,12 @@ const LoadingScreen = () => {
       {showThirdText && (
         <div className="text-white font-bold lg:flex-row flex-col items-center justify-center">
           <Link href="/signup">
-            <button className="falling-texts2 w-[300px] p-2 bg-indigo-600 text-white rounded-lg hover:ring-4 hover:ring-offset-1 hover:bg-white hover:text-black focus:outline-none focus:bg-purple-700 m-6">
+            <button className="falling-texts2 w-[300px] p-2 bg-indigo-600 text-white rounded-lg hover:ring-4 hover:ring-offset-1 hover:bg-white hover:text-black m-6">
               Sign Up
             </button>
           </Link>
           <Link href="/login">
-            <button className="falling-texts2 w-[300px] p-2 bg-indigo-600 text-white rounded-lg hover:ring-4 hover:ring-offset-1 hover:bg-white hover:text-black focus:outline-none focus:bg-purple-700 m-6">
+            <button className="falling-texts2 w-[300px] p-2 bg-indigo-600 text-white rounded-lg hover:ring-4 hover:ring-offset-1 hover:bg-white hover:text-black m-6">
               Login
             </button>
           </Link>

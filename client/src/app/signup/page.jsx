@@ -158,7 +158,7 @@ const LoginPage = () => {
           {/* <Link href="/"> */}
             <button
               type="submit"
-              className="w-full p-2 my-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 focus:outline-none focus:bg-purple-700"
+              className="w-full p-2 my-2 bg-indigo-600 text-xl font-medium text-white rounded-lg hover:bg-indigo-700 focus:outline-none focus:bg-purple-700"
             >
               Submit
             </button>
