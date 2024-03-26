@@ -11,7 +11,6 @@ const LostForm = () => {
   const [itemtype, setItemtype] = useState("");
   const [itemdescription, setItemdescription] = useState("");
   const [file, setFile] = useState(null);
-
   const [message, setMessage] = useState("");
 
   const handleFileChange = (selectedFile) => {
@@ -87,7 +86,7 @@ const LostForm = () => {
   return (
     <main className="min-h-screen flex items-center justify-center">
       <div className="p-8 bg-white rounded-xl mt-6 mb-6 shadow-md w-full max-w-sm md:max-w-md lg:max-w-md xl:max-w-md transform transition-transform duration-500">
-        <div className="mb-10 text-center text-4xl text-purple-600">
+        <div className="mb-10 text-center text-4xl text-indigo-600">
           LOST ITEMS FORMS
         </div>
         <form onSubmit={handleSubmit}>
@@ -100,7 +99,7 @@ const LostForm = () => {
               value={rollno}
               onChange={(e) => setRollno(e.target.value)}
               placeholder="Enter your First Name"
-              className="w-full px-3 py-2 border border-purple-500 rounded-lg focus:outline-none focus:border-purple-700 my-2"
+              className="w-full px-3 py-2 border-2 border-indigo-500 rounded-lg focus:outline-none focus:border-purple-700 my-2"
               required
             />
           </p>
@@ -113,7 +112,7 @@ const LostForm = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your E-Mail Address"
-              className="w-full px-3 py-2 border border-purple-500 rounded-lg focus:outline-none focus:border-purple-700 my-2"
+              className="w-full px-3 py-2 border-2 border-indigo-500 rounded-lg focus:outline-none focus:border-purple-700 my-2"
             />
           </p>
           <p>
@@ -125,7 +124,7 @@ const LostForm = () => {
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               placeholder="Enter your Phone Number"
-              className="w-full px-3 py-2 border border-purple-500 rounded-lg focus:outline-none focus:border-purple-700 my-2"
+              className="w-full px-3 py-2 border-2 border-indigo-500 rounded-lg focus:outline-none focus:border-purple-700 my-2"
               inputMode="numeric"
             />
           </p>
@@ -138,7 +137,7 @@ const LostForm = () => {
               value={location}
               onChange={(e) => setLocation(e.target.value)}
               placeholder="Enter the Location Last Seen"
-              className="w-full px-3 py-2 border border-purple-500 rounded-lg focus:outline-none focus:border-purple-700 my-2"
+              className="w-full px-3 py-2 border-2 border-indigo-500 rounded-lg focus:outline-none focus:border-purple-700 my-2"
               inputMode="numeric"
             />
           </p>
@@ -149,7 +148,7 @@ const LostForm = () => {
             <input
               value={ldate}
               onChange={(e) => setDate(e.target.value)}
-              className="w-full px-3 py-2 border border-purple-500 rounded-lg focus:outline-none focus:border-purple-700 my-2"
+              className="w-full px-3 py-2 border-2 border-indigo-500 rounded-lg focus:outline-none focus:border-purple-700 my-2"
               inputMode="numeric"
               type="date"
               name="begin"
@@ -167,7 +166,7 @@ const LostForm = () => {
               value={itemtype}
               onChange={(e) => setItemtype(e.target.value)}
               placeholder="Enter the category/type of the item(Book,keychain etc)"
-              className="w-full px-3 py-2 border border-purple-500 rounded-lg focus:outline-none focus:border-purple-700 my-2"
+              className="w-full px-3 py-2 border-2 border-indigo-500 rounded-lg focus:outline-none focus:border-purple-700 my-2"
               inputMode="numeric"
             />
           </p>
@@ -180,7 +179,7 @@ const LostForm = () => {
               value={itemdescription}
               onChange={(e) => setItemdescription(e.target.value)}
               placeholder="Enter item description"
-              className="w-full px-3 py-2 border border-purple-500 rounded-lg focus:outline-none focus:border-purple-700"
+              className="w-full px-3 py-2 border-2 border-indigo-500 rounded-lg focus:outline-none focus:border-purple-700"
             />
           </div>
           <p>
@@ -191,6 +190,7 @@ const LostForm = () => {
               type="file"
               onChange={(e) => handleFileChange(e.target.files[0])}
               accept="image/*"
+              className="w-full px-3 py-2 border-2 border-indigo-500 rounded-lg focus:outline-none focus:border-purple-700 my-2"
             />
 
 
@@ -199,12 +199,15 @@ const LostForm = () => {
           {/* <Link href="/"> */}
           <button
             type="submit"
-            className="w-full p-2 my-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 focus:outline-none focus:bg-purple-700"
+            className="w-full p-2 my-2 bg-indigo-600 text-xl font-medium text-white rounded-lg hover:bg-indigo-700 focus:outline-none focus:bg-purple-700"
           >
             Submit
           </button>
           {/* </Link> */}
         </form>
+        <div className="text-xl font-medium flex justify-center items-center hover:text-indigo-600 cursor-pointer">
+            Return To HomePage
+        </div>
         <div className="flex justify-center item-center">{message}</div>
         {message === "User registered successfully" && (
           <Link href="/login">

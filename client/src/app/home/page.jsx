@@ -35,12 +35,12 @@ const page = () => {
         {showFirstText && (
           <div className="falling-texts space-y-4 text-4xl text-purple-400 font-bold">
             <div className="falling-text text-4xl md:text-6xl lg:text-7xl">
-              <div className="text-white">HAVE LOST OR FOUND SOMETHING?</div>
+              <div className="text-white text-center">HAVE LOST OR FOUND SOMETHING?</div>
             </div>
           </div>
         )}
         {showSecondText && (
-          <div className="falling-texts space-y-4 text-4xl text-purple-400 font-bold">
+          <div className="falling-texts space-y-4 text-4xl text-indigo-400 font-bold">
             <div className="falling-text2 text-4xl md:text-5xl lg:text-7xl p-1 my-4">
               <div className="text-center">DONT WORRY</div>
               <div className="text-center">

@@ -14,28 +14,28 @@ const Navbar = () => {
       <nav className="lg:flex lg:flex-row justify-center m-4 p-4">
         <div className="hidden lg:flex items-center">
           <Image src={"/iiitdm.jpeg"} alt="Logo" width={50} height={20} />{" "}
-          <div className="h-full border-l border-purple-700 mx-4"></div>
+          <div className="h-full border-l border-indigo-700 mx-4"></div>
         </div>
         {/* Desktop view */}
         <div className="hidden lg:flex items-center">
           <h1 className="text-white">FORMS</h1>
-          <div className="h-full border-l border-purple-700 mx-4"></div>
+          <div className="h-full border-l border-indigo-700 mx-4"></div>
         </div>
         <div className="hidden lg:flex items-center">
           <h1 className="text-white">LOST ITEMS</h1>
-          <div className="h-full border-l border-purple-700 mx-4"></div>
+          <div className="h-full border-l border-indigo-700 mx-4"></div>
         </div>
         <div className="hidden lg:flex items-center">
           <h1 className="text-white">FOUND ITEMS</h1>
-          <div className="h-full border-l border-purple-700 mx-4"></div>
+          <div className="h-full border-l border-indigo-700 mx-4"></div>
         </div>
         <div className="hidden lg:flex items-center">
           <h1 className="text-white">LOST HISTORY</h1>
-          <div className="h-full border-l border-purple-700 mx-4"></div>
+          <div className="h-full border-l border-indigo-700 mx-4"></div>
         </div>
         <div className="hidden lg:flex items-center">
           <h1 className="text-white">FOUND HISTORY</h1>
-          <div className="h-full border-l border-purple-700 mx-4"></div>
+          <div className="h-full border-l border-indigo-700 mx-4"></div>
         </div>
         <div className="hidden lg:flex items-center">
           <h1 className="text-white">PROFILE</h1>
