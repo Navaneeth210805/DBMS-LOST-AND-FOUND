@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 
-const LostForm = () => {
+const FoundForm = () => {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [rollno, setRollno] = useState("");
@@ -17,13 +17,77 @@ const LostForm = () => {
     setFile(selectedfile);
   };
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if(file!=null)
+    {
+      let image_data=file
+      let reader=new FileReader();
+
+      reader.onload = function() {
+        var image_data = reader.result;
+
+        const form_data = {
+          email: email,
+          phone_no: phone,
+          roll_no: rollno,
+          location: location,
+          ldate: fdate,
+          itemtype: itemtype,
+          itemdescription: itemdescription,
+          image: image_data
+        };
+
+        sendFormData(form_data);
+      };
+
+      reader.readAsDataURL(image_data)
+    }
+    else
+    {
+      const form_data = {
+        email: email,
+        phone_no: phone,
+        roll_no: rollno,
+        location: location,
+        ldate: fdate,
+        itemtype: itemtype,
+        itemdescription: itemdescription,
+        image: "null"
+      };
+
+      sendFormData(form_data);
+    }
+  }
+    
+    async function sendFormData(form_data){
+    try {
+      const response = await fetch("http://127.0.0.1:8080/api/register3", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded", // Ensure correct content type
+        },
+        body: new URLSearchParams(form_data),
+      });
+  
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+  
+      const data = await response.json();
+      setMessage(data.message);
+    } catch (error) {
+      console.error("Error:", error);
+      setMessage("Error submitting form.");
+    }
+  };
   return (
     <main className="min-h-screen flex items-center justify-center">
       <div className="p-8 bg-white rounded-xl shadow-md w-full max-w-sm md:max-w-md lg:max-w-md xl:max-w-md transform transition-transform duration-500">
         <div className="mb-10 text-center text-4xl text-indigo-600">
           FOUND ITEMS FORMS
         </div>
-        <form>
+        <form onSubmit={handleSubmit}>
           <p>
             <label htmlFor="text" className="p-1">
               Roll Number
@@ -122,8 +186,7 @@ const LostForm = () => {
             </label>
             <input
               type="file"
-              value={file}
-              onChange={(e) => setItemtype(e.target.files[0])}
+              onChange={(e) =>handleFileChange(e.target.files[0])}
               placeholder="Enter the category/type of the item(Book,keychain etc)"
               className="w-full px-3 py-2 border-2 border-indigo-500 rounded-lg focus:outline-none focus:border-purple-700 my-2"
               inputMode="numeric"
@@ -158,4 +221,4 @@ const LostForm = () => {
   );
 };
 
-export default LostForm;
+export default FoundForm;
