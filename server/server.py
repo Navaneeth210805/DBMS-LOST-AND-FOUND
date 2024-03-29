@@ -9,7 +9,7 @@ CORS(app)
 
 
 
-client = MongoClient("mongodb+srv://Abishek:cs22b1092@cluster0.kjanzgj.mongodb.net/")
+client = MongoClient("")
 db = client.flask_database
 
 # Route to handle POST requests for user registration
