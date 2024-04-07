@@ -9,7 +9,7 @@ CORS(app)
 
 
 
-client = MongoClient("your srv link from mongodb atlas")
+client = MongoClient("mongodb+srv://Harshith:cs22b2015@cluster0.kjanzgj.mongodb.net/")
 db = client.flask_database
 
 # Route to handle POST requests for user registration
@@ -179,6 +179,15 @@ def register3():
     except Exception as e:
         return jsonify({"message": "An error occurred while processing the request", "error": str(e)}), 500
 
+
+@app.route("/api/lost_items", methods=["GET"])
+def get_lost_items():
+    LostItems = db["lost_items"]
+    try:
+        lost_items = list(LostItems.find())
+        return jsonify({"lost_items": lost_items}), 200
+    except Exception as e:
+        return jsonify({"message": "An error occurred while processing the request", "error": str(e)}), 500
 
 if __name__ == "__main__":
     app.run(debug=True, port=8080)
