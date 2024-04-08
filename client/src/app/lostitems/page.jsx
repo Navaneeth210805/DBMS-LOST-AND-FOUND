@@ -1,6 +1,8 @@
 "use client"
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Navbar from '../(components)/navbar';
+import Card from '../(components)/card';
 
 const LostItems = () => {
   const [lostItems, setLostItems] = useState([]);
@@ -20,19 +22,18 @@ const LostItems = () => {
   }, []);
 
   return (
-    <div className='text-white'>
-      <h2>Lost Items</h2>
-      <ul>
-            {lostItems.map((item, index) => (
-        <div key={index}>
-            <li>{item.Email}</li>
-            {item.Image !== 'null' && (
-            <img src={item.Image} alt="Image" />
-            )}
-        </div>
+    <div className=''>
+      <Navbar/>
+      <h2 className='text-white flex justify-center text-5xl'>Lost Items</h2>
+      <div className='flex justify-center p-10 mt-28'>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-40 place-content-center">
+        {lostItems.map((item, index) => (
+          <div key={index}>
+            <Card item={item} />
+          </div>
         ))}
-
-      </ul>
+      </div>
+      </div>
     </div>
   );
   

@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,7 +14,8 @@ const Navbar = () => {
     <main>
       <nav className="lg:flex lg:flex-row justify-center m-4 p-4">
         <div className="hidden lg:flex items-center">
-          <Image src={"/iiitdm.jpeg"} alt="Logo" width={50} height={20} />{" "}
+          <Link href="/">
+          <Image src={"/iiitdm.jpeg"} alt="Logo" width={50} height={20} /></Link>{" "}
           <div className="h-full border-l border-indigo-700 mx-4"></div>
         </div>
         {/* Desktop view */}
@@ -22,7 +24,9 @@ const Navbar = () => {
           <div className="h-full border-l border-indigo-700 mx-4"></div>
         </div>
         <div className="hidden lg:flex items-center">
+          <Link href="/lostitems">
           <h1 className="text-white">LOST ITEMS</h1>
+          </Link>
           <div className="h-full border-l border-indigo-700 mx-4"></div>
         </div>
         <div className="hidden lg:flex items-center">

@@ -1,7 +1,9 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from pymongo import MongoClient
-from config import MONGO_URI
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 
 app = Flask(__name__)
@@ -9,9 +11,9 @@ CORS(app)
 
 # Connect to MongoDB
 
+mongo_uri = os.getenv("MONGO_URI")
 
-
-client = MongoClient(MONGO_URI)
+client = MongoClient(mongo_uri)
 db = client.flask_database
 
 # Route to handle POST requests for user registration

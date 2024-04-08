@@ -205,9 +205,11 @@ const LostForm = () => {
           </button>
           {/* </Link> */}
         </form>
+        <Link href = "/home">
         <div className="text-xl font-medium flex justify-center items-center hover:text-indigo-600 cursor-pointer">
             Return To HomePage
         </div>
+        </Link>
         <div className="flex justify-center item-center">{message}</div>
         {message === "User registered successfully" && (
           <Link href="/login">
