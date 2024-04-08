@@ -4,28 +4,29 @@ import Navbar from "../(components)/navbar";
 import Link from "next/link";
 
 
-window.onload =function(){
+const GetState = () => {
+  const [loading,setisloading] = useState(false)  
 
-    async function  fetchDatafromDatabase()
-    {
-      try
-      {
-          const response =await fetch("http://127.0.0.1:8080/api/register3",{
-              method:"GET",
-              headers:{"Content-Type":"application/json"}
-          })
-          if(!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-          return await response.json();
+  useEffect(() => {
+    const fetchState = async () => {
+      try {
+        const response = await axios.get('http://127.0.0.1:8080/api/state');
+        console.log('Fetched data:', response.data);
+        if(response.data==true)
+        {
+          setisloading(true)
+        }
+      } catch (error) {
+        console.error('Error fetching details:', error);
       }
-      catch(error){console.log('Error');}
-  
-    }
+    };
 
-        message=fetchDatafromDatabase();
+    fetchState();
+  }, []);
 
-    if(message==1)
-    {
-      const page = () => {
+
+
+const page = () => {
         const [showFirstText, setShowFirstText] = useState(false);
         const [showSecondText, setShowSecondText] = useState(false);
         const [showThirdText, setShowThirdText] = useState(false);
@@ -53,7 +54,8 @@ window.onload =function(){
         return (
           <main>
             <Navbar />
-            <div className="loading-screen flex flex-col items-center justify-center  p-10 m-10">
+            {loading ? (
+              <div className="loading-screen flex flex-col items-center justify-center  p-10 m-10">
               {showFirstText && (
                 <div className="falling-texts space-y-4 text-4xl text-purple-400 font-bold">
                   <div className="falling-text text-4xl md:text-6xl lg:text-7xl">
@@ -94,16 +96,15 @@ window.onload =function(){
                 </div>
               )}
             </div>
+            ) : 
+            <div className="space-y-4 text-4xl text-indigo-400 font-bold p-1 my-4 flex justify-center items-center">
+              PLEASE LOGIN TO ACCESS THE PORTAL
+              </div>}
           </main>
         );
+
+        
       };
-      
-    }
-    else
-    {
-      
-    }
-}
-
-
-export default page;
+      return page();
+  };
+export default GetState;
