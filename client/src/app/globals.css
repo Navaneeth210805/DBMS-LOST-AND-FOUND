@@ -43,3 +43,16 @@ body {
   background-size: 401% 400%;
   background-attachment: fixed;
 }
+
+::-webkit-scrollbar {
+  width: 1px; 
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #4b5563; 
+  border-radius: 3px; 
+}
+
+::-webkit-scrollbar-track {
+  background-color: #cbd5e0; 
+}
