@@ -9,12 +9,8 @@ const LostItems = () => {
     const fetchLostItems = async () => {
       try {
         const response = await axios.get('http://127.0.0.1:8080/api/lost_items');
-        console.log('Fetched data:', response.data);
-        if (Array.isArray(response.data.lost_items)) {
-          setLostItems(response.data.lost_items);
-        } else {
-          console.error('Data is not an array:', response.data.lost_items);
-        }
+        console.log('Fetched data:', response.data.lost_item);
+        setLostItems(response.data.lost_item);
       } catch (error) {
         console.error('Error fetching lost items:', error);
       }
@@ -27,12 +23,19 @@ const LostItems = () => {
     <div className='text-white'>
       <h2>Lost Items</h2>
       <ul>
-        {lostItems.map((item, index) => (
-          <li key={index}>{item.email}</li> // Assuming each item has a "name" property
+            {lostItems.map((item, index) => (
+        <div key={index}>
+            <li>{item.Email}</li>
+            {item.Image !== 'null' && (
+            <img src={item.Image} alt="Image" />
+            )}
+        </div>
         ))}
+
       </ul>
     </div>
   );
+  
 };
 
 export default LostItems;

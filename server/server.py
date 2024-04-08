@@ -184,8 +184,8 @@ def register3():
 def get_lost_items():
     LostItems = db["lost_items"]
     try:
-        lost_items = list(LostItems.find())
-        return jsonify({"lost_items": lost_items}), 200
+        lost_item = list(LostItems.find({},{'_id' : 0}))
+        return jsonify({"lost_item": lost_item}), 200
     except Exception as e:
         return jsonify({"message": "An error occurred while processing the request", "error": str(e)}), 500
 
