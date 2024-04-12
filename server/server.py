@@ -1,9 +1,10 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, url_for, redirect
 from flask_cors import CORS
 from pymongo import MongoClient
 import os
 from dotenv import load_dotenv
 load_dotenv()
+from functools import wraps
 
 
 app = Flask(__name__)
@@ -16,25 +17,38 @@ mongo_uri = os.getenv("MONGO_URI")
 client = MongoClient(mongo_uri)
 db = client.flask_database
 
-# Route to handle POST requests for user registration
+current_state=False
 
+def login_required(f):
+    @wraps(f)
+    
+    def decorated_function(*args, **kwargs):
+        sessions=db['Session_State']
+        session = sessions.find()
+        if 'roll_no' not in session:
+            return redirect(url_for('login'))
+        return f(*args, **kwargs)
+    return decorated_function
 
 @app.route("/api/register", methods=["POST"])
 def register():
+    global current_state
     login_details = db['login_details']
+    session_state=db['Session_State']
     try:
-        # Extract username and password from form data
         rollno = request.form.get('rollno')
         password = request.form.get('password')
 
-        # Check if username and password are not None or empty strings
         if rollno is not None and password is not None and rollno.strip() and password.strip():
-            # Insert user data into the database
 
             data = db.login_details.find_one(
                 {"RollNo": rollno, "Password": password})
             print(data)
             if (data):
+                x=session_state.insert_one(
+                    {"Logged_in_IDS" : rollno}
+                ).inserted_id
+                current_state=True
                 return jsonify({"message": "Login Successful"})
             else:
                 return jsonify({"message": "Incorrect Username or Password"})
@@ -43,13 +57,12 @@ def register():
     except Exception as e:
         return jsonify({"message": "An error occurred while processing the request", "error": str(e)}), 500
 
-
 @app.route("/api/register1", methods=["POST"])
 def register1():
     login_details = db['login_details']
     Student = db['student']
+    
     try:
-        # Extract username and password from form data
         username = request.form.get('username')
         password = request.form.get('password')
         fname = request.form.get('fname')
@@ -63,16 +76,13 @@ def register1():
         print(data)
         if (data):
             return jsonify({"message": "Roll Number already exists", "user_id": str(user_id)})
-
-        # Check if username and password are not None or empty strings
         if (username is not None and username.strip() and
             password is not None and password.strip() and
             fname is not None and fname.strip() and
             lname is not None and lname.strip() and
             email is not None and email.strip() and
             phone is not None and phone.strip() and
-                rollno is not None and rollno.strip()):
-            # Insert user data into the database
+            rollno is not None and rollno.strip()):
             user_id = login_details.insert_one(
                 {
                     "RollNo": rollno,
@@ -97,12 +107,11 @@ def register1():
     except Exception as e:
         return jsonify({"message": "An error occurred while processing the request", "error": str(e)}), 500
 
-
 @app.route("/api/register2", methods=["POST"])
+@login_required
 def register2():
     LostItems = db['lost_items']
     try:
-        # Extract username and password from form data
         email = request.form.get('email')
         phone = request.form.get('phone_no')
         rollno = request.form.get("roll_no")
@@ -111,7 +120,6 @@ def register2():
         itemtype = request.form.get("itemtype")
         itemdescription = request.form.get("itemdescription")
         image_data=request.form.get("image")
-
 
         if (email is not None and email.strip() and
             phone is not None and phone.strip() and
@@ -140,12 +148,11 @@ def register2():
     except Exception as e:
         return jsonify({"message": "An error occurred while processing the request", "error": str(e)}), 500
 
-
 @app.route("/api/register3", methods=["POST"])
+@login_required
 def register3():
     FoundItems = db['found_items']
     try:
-        # Extract username and password from form data
         email = request.form.get('email')
         phone = request.form.get('phone_no')
         rollno = request.form.get("roll_no")
@@ -162,7 +169,8 @@ def register3():
             location is not None and location.strip() and
             ldate is not None and ldate.strip() and
             itemtype is not None and itemtype.strip() and
-            itemdescription is not None and itemdescription.strip()):
+            itemdescription is not None and itemdescription.strip() and
+            image_data is not None and  image_data.strip()):
 
             found_item_id = FoundItems.insert_one(
                 {
@@ -193,22 +201,17 @@ def get_lost_items():
     except Exception as e:
         return jsonify({"message": "An error occurred while processing the request", "error": str(e)}), 500
 
+
+@app.route("/api/state", methods=["GET"])
+def states():
+    global current_state
+    return  jsonify(current_state)
+
+@app.route("/api/logout_state" , method=["POST"])
+def states1():
+    global current_state
+    current_state=False
+    return  jsonify("Logged out")
+
 if __name__ == "__main__":
     app.run(debug=True, port=8080)
-
-
-# @app.route("/api/login", methods=["POST"])
-# def userlogin():
-#     if request.method == "POST":
-#         form = request.get_json()
-#         roll_no = form.get('roll_no')
-#         email = form.get('email')
-#         db.users.insert_one({  # Assuming you have a collection named 'users'
-#             "roll_no": roll_no,
-#             "email": email
-#         })
-#         return jsonify({"message": "Form data saved successfully"})
-#     else:
-#         return jsonify({"message": "Invalid request method"})
-# if _name_ == "_main_":
-#     app.run(debug=True, port=8080)
