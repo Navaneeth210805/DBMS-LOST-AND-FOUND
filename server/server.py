@@ -200,6 +200,16 @@ def get_lost_items():
         return jsonify({"lost_item": lost_item}), 200
     except Exception as e:
         return jsonify({"message": "An error occurred while processing the request", "error": str(e)}), 500
+    
+
+@app.route("/api/found_items", methods=["GET"])
+def get_found_items():
+    FoundItems = db["found_items"]
+    try:
+        found_item = list(FoundItems.find({},{'_id' : 0}))
+        return jsonify({"found_item": found_item}), 200
+    except Exception as e:
+        return jsonify({"message": "An error occurred while processing the request", "error": str(e)}), 500
 
 
 @app.route("/api/state", methods=["GET"])
@@ -207,7 +217,7 @@ def states():
     global current_state
     return  jsonify(current_state)
 
-@app.route("/api/logout_state" , method=["POST"])
+@app.route("/api/logout_state" , methods=["POST"])
 def states1():
     global current_state
     current_state=False

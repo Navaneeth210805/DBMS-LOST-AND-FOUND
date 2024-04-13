@@ -1,4 +1,5 @@
 "use client";
+import axios from "axios";
 import React, { useState, useEffect } from "react";
 import Navbar from "../(components)/navbar";
 import Link from "next/link";
@@ -14,7 +15,8 @@ const GetState = () => {
         console.log('Fetched data:', response.data);
         if(response.data==true)
         {
-          setisloading(true)
+          setisloading(true);
+          console.log(loading);
         }
       } catch (error) {
         console.error('Error fetching details:', error);
