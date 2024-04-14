@@ -1,4 +1,3 @@
-
 import Head from 'next/head';
 import "./globals.css";
 import { Inter } from "next/font/google";
@@ -19,7 +18,7 @@ export default function RootLayout({ children }) {
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="description" content={metadata.description} />
-        <link rel="icon" href={faviconUrl} />
+        <link rel="icon" type="image/svg+xml" href={faviconUrl} />
         <title>{metadata.title}</title>
         <style>{inter.css}</style>
       </Head>

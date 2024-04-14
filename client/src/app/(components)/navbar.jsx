@@ -30,7 +30,7 @@ const Navbar = () => {
           <div className="h-full border-l border-indigo-700 mx-4"></div>
         </div>
         <div className="hidden lg:flex items-center">
-          <h1 className="text-white">FOUND ITEMS</h1>
+          <Link href={"/founditems"}><h1 className="text-white">FOUND ITEMS</h1></Link>
           <div className="h-full border-l border-indigo-700 mx-4"></div>
         </div>
         <div className="hidden lg:flex items-center">
