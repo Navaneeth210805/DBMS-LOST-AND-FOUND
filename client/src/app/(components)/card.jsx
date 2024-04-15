@@ -1,6 +1,39 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 
+const handleUpdate = async ({item}) =>{
+    try{
+        const response = await fetch('http://127.0.0.1:8080/api/update',{
+            method:'POST',
+            body : new URLSearchParams({
+                email: item.Email,
+                phone_no: item.PhoneNo,
+                roll_no: item.RollNo,
+                location: item.Location,
+                ldate: item.DateLost,
+                itemtype: item.ItemType,
+                itemdescription: item.ItemDescription,
+                image : item.Image
+            })
+        });
+
+        if(response.ok)
+        {
+            console.log("Removed")
+            window.location.reload();
+
+        }
+        else
+        {
+            console.log("Error in removing")
+        }
+    }
+    catch(error)
+    {
+        console.error(error)
+    }
+}
+
 
 const Card = ({ item }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -96,8 +129,9 @@ const Card = ({ item }) => {
                     </div>
                 )}
             </div>
-            <div className='flex flex-row justify-center'>
-                <button className='m-2 bg-indigo-500 p-2 rounded-lg text-white font-bold'>Update</button>
+            <div 
+            className='flex flex-row justify-center'>
+                <button className='m-2 bg-indigo-500 p-2 rounded-lg text-white font-bold' onClick={() => handleUpdate({item})}>Update Status</button>
                 <button className='m-2 bg-indigo-500 p-2 rounded-lg text-white font-bold'>Alter Details</button>
             </div>
         </div>
