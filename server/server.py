@@ -223,5 +223,52 @@ def states1():
     current_state=False
     return  jsonify("Logged out")
 
+@app.route("/api/update", methods=["POST"])
+def update():
+    History = db["History"]
+    Items = db["lost_items"]
+    email = request.form.get('email')
+    phone = request.form.get('phone_no')
+    rollno = request.form.get("roll_no")
+    location = request.form.get("location")
+    ldate = request.form.get("ldate")
+    itemtype = request.form.get("itemtype")
+    itemdescription = request.form.get("itemdescription")
+    image =  request.form.get("image")
+    print(email,phone,rollno,location,ldate,itemtype,itemdescription)
+    try:
+        delete_query = {
+            "Email": email,
+            "PhoneNo": phone,
+            "RollNo": rollno,
+            "Location": location,
+            "DateLost": ldate,
+            "ItemType": itemtype,
+            "ItemDescription": itemdescription
+        }
+
+        result = Items.delete_one(delete_query)
+
+        History.insert_one({
+            "Email": email,
+            "PhoneNo": phone,
+            "RollNo": rollno,
+            "Location": location,
+            "DateLost": ldate,
+            "ItemType": itemtype,
+            "ItemDescription": itemdescription,
+            "Image" : image
+        })
+
+        if result.deleted_count == 1:
+            print("Document deleted successfully")
+            return jsonify({"message": "Document deleted successfully"}), 200
+        else:
+            print("Document not found for deletion")
+            return jsonify({"message": "Document not found for deletion"}), 404
+    except Exception as e:
+        print("Error:", e)
+        return jsonify({"error": str(e)}), 500
+
 if __name__ == "__main__":
     app.run(debug=True, port=8080)
