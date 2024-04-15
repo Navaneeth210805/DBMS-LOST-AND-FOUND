@@ -1,6 +1,8 @@
 "use client";
 import React, { useState } from "react";
 import Link from "next/link";
+import { Dialog } from '@headlessui/react';
+
 
 const LostForm = () => {
   const [email, setEmail] = useState("");
@@ -12,10 +14,18 @@ const LostForm = () => {
   const [itemdescription, setItemdescription] = useState("");
   const [file, setFile] = useState(null);
   const [message, setMessage] = useState("");
+  
 
   const handleFileChange = (selectedFile) => {
-    setFile(selectedFile);
+    const maxSize = 1 * 1024 * 1024;
+    if (selectedFile.size > maxSize) {
+      alert("File size exceeds 1MB limit. Please choose a smaller file"); 
+      return;
+    } else {
+      setFile(selectedFile);
+    }
   };
+  
   
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -184,13 +194,14 @@ const LostForm = () => {
           </div>
           <p>
             <label htmlFor="text" className="p-1">
-              Lost Item Photo
+              Lost Item Photo(Max size 1MB)
             </label>
             <input
               type="file"
               onChange={(e) => handleFileChange(e.target.files[0])}
               accept="image/*"
               className="w-full px-3 py-2 border-2 border-indigo-500 rounded-lg focus:outline-none focus:border-purple-700 my-2"
+              capture="filesystem"
             />
 
 
