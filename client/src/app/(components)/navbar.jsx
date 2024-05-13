@@ -20,7 +20,9 @@ const Navbar = () => {
         </div>
         {/* Desktop view */}
         <div className="hidden lg:flex items-center">
-          <h1 className="text-white">FORMS</h1>
+          <Link href = {'/home'}>
+          <h1 className="text-white">HOME</h1>
+          </Link>
           <div className="h-full border-l border-indigo-700 mx-4"></div>
         </div>
         <div className="hidden lg:flex items-center">
@@ -43,7 +45,15 @@ const Navbar = () => {
         </div>
         <div className="hidden lg:flex items-center">
           <h1 className="text-white">PROFILE</h1>
+          <div className="h-full border-l border-indigo-700 mx-4"></div>
         </div>
+        
+        <div className="hidden lg:flex items-center">
+        <Link href={'/'}>
+          <h1 className="text-white">LOG OUT</h1>
+          </Link>
+        </div>
+        
 
         {/* Mobile view */}
         <div className="lg:hidden flex items-center justify-between">
@@ -72,6 +82,7 @@ const Navbar = () => {
               )}
             </svg>
           </button>
+          <Link href={'/'}>
           <Image
             src={"/iiitdm.jpeg"}
             alt="Logo"
@@ -79,6 +90,7 @@ const Navbar = () => {
             height={100}
             className="justify-content items-center"
           />
+          </Link>
           <div className="text-transparent">" " </div>
         </div>
       </nav>
@@ -87,9 +99,15 @@ const Navbar = () => {
       {isOpen && (
         <div className="lg:hidden top-16 w-full">
           <div className="flex flex-col items-center mt-4">
-            <h1 className="text-white mb-2">FORMS</h1>
+            <Link href={'/'}>
+            <h1 className="text-white mb-2">HOME</h1>
+            </Link>
+            <Link href={'/lostitems'}>
             <h1 className="text-white mb-2">LOST ITEMS</h1>
+            </Link>
+            <Link href={'/founditems'}>
             <h1 className="text-white mb-2">FOUND ITEMS</h1>
+            </Link>
             <h1 className="text-white mb-2">HISTORY</h1>
             <h1 className="text-white mb-2">PROFILE</h1>
           </div>

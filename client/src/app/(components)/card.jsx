@@ -119,13 +119,13 @@ const Card = ({ item }) => {
             </div>
             <div className='flex flex-row justify-center'>
                 {item.Image ? (
-                    <img src={item.Image} alt="No Image Uploaded" className="mt-1 w-50 h-32 flex justify-center cursor-pointer" onClick={handleImageClick} />
+                    <img src={item.Image} alt="No Image" className="mt-1 w-50 h-32 flex justify-center cursor-pointer" onClick={handleImageClick} />
                 ) : (
                     <div className="mt-3 flex justify-center text-white w-full h-32">No Image Uploaded</div>
                 )}
                 {isModalOpen && (
                     <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-75 z-50 text-white" onClick={toggleModal}>
-                        <img src={item.Image} alt="No Image Uploaded" className="text-white" />
+                        <img src={item.Image} alt="No Image" className="text-white" />
                     </div>
                 )}
             </div>

@@ -26,6 +26,23 @@ const GetState = () => {
     fetchState();
   }, []);
 
+  useEffect(() => {
+    const fetchRole = async () => {
+      try {
+        const response = await axios.get('http://127.0.0.1:8080/api/check_role');
+        if (response.data.role === 'admin') {
+          setAdmin(true);
+          console.log('ADMIN')
+        }
+        console.log('BOOOOO')
+        setisloading(true); 
+      } catch (error) {
+        console.error('Error fetching role:', error);
+      }
+    };
+  
+    fetchRole();
+  }, []);
 
 
 const page = () => {

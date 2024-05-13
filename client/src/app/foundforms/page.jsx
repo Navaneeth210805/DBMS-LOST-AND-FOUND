@@ -13,14 +13,8 @@ const FoundForm = () => {
   const [file, setFile] = useState(null);
   const [message, setMessage] = useState("");
 
-  const handleFileChange = (selectedFile) => {
-    const maxSize = 1 * 1024 * 1024;
-    if (selectedFile.size > maxSize) {
-      alert("File size exceeds 1MB limit. Please choose a smaller file"); 
-      return;
-    } else {
-      setFile(selectedFile);
-    }
+  const handleFileChange = (selectedfile) =>{
+    setFile(selectedfile);
   };
 
   const handleSubmit = async (event) => {

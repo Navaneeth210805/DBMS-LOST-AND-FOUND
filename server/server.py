@@ -303,5 +303,19 @@ def update_fron_found():
     except Exception as e:
         print("Error:", e)
         return jsonify({"error": str(e)}), 500
+    
+@app.route("/api/check_role", methods=["GET"])
+def check_role():
+    sessions = db['Session_State']
+    try:
+        session = sessions.find_one({"Logged_in_IDS": request.headers.get("Roll-No")})
+        if session:
+            role = session.get("role")
+            return jsonify({"role": role}), 200
+        else:
+            return jsonify({"role": None}), 200
+    except Exception as e:
+        return jsonify({"message": "An error occurred while processing the request", "error": str(e)}), 500
+
 if __name__ == "__main__":
     app.run(debug=True, port=8080)
