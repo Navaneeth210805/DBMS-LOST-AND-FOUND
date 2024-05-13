@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import Navbar from '../(components)/navbar';
 import axios from 'axios';
-import Card from '../(components)/card';
+import Card from '../(components)/card2';
 
 const FoundItems = () => {
     const [foundItems, setFoundItems] = useState([]);
