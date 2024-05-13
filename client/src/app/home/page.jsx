@@ -100,7 +100,9 @@ const page = () => {
             </div>
             ) : 
             <div className="space-y-4 text-4xl text-indigo-400 font-bold p-1 my-4 flex justify-center items-center">
-              PLEASE LOGIN TO ACCESS THE PORTAL
+              <Link href="/login">
+                Please Login to access the portal
+              </Link>
               </div>}
           </main>
         );
