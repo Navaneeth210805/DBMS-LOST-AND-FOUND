@@ -19,17 +19,6 @@ db = client.flask_database
 
 current_state=False
 
-def login_required(f):
-    @wraps(f)
-    
-    def decorated_function(*args, **kwargs):
-        sessions=db['Session_State']
-        session = sessions.find()
-        if 'roll_no' not in session:
-            return redirect(url_for('login'))
-        return f(*args, **kwargs)
-    return decorated_function
-
 @app.route("/api/register", methods=["POST"])
 def register():
     global current_state
@@ -108,7 +97,6 @@ def register1():
         return jsonify({"message": "An error occurred while processing the request", "error": str(e)}), 500
 
 @app.route("/api/register2", methods=["POST"])
-@login_required
 def register2():
     LostItems = db['lost_items']
     try:
@@ -149,7 +137,6 @@ def register2():
         return jsonify({"message": "An error occurred while processing the request", "error": str(e)}), 500
 
 @app.route("/api/register3", methods=["POST"])
-@login_required
 def register3():
     FoundItems = db['found_items']
     try:
@@ -225,7 +212,7 @@ def states1():
 
 @app.route("/api/update", methods=["POST"])
 def update():
-    History = db["History"]
+    History = db["Lost_History"]
     Items = db["lost_items"]
     email = request.form.get('email')
     phone = request.form.get('phone_no')
@@ -270,5 +257,51 @@ def update():
         print("Error:", e)
         return jsonify({"error": str(e)}), 500
 
+@app.route("/api/update_from_found",methods=["POST"])
+def update_fron_found():
+    History = db["Found_History"]
+    Items = db["found_items"]
+    email = request.form.get('email')
+    phone = request.form.get('phone_no')
+    rollno = request.form.get("roll_no")
+    location = request.form.get("location")
+    ldate = request.form.get("ldate")
+    itemtype = request.form.get("itemtype")
+    itemdescription = request.form.get("itemdescription")
+    image =  request.form.get("image")
+    print(email,phone,rollno,location,ldate,itemtype,itemdescription)
+    try:
+        delete_query = {
+            "Email": email,
+            "PhoneNo": phone,
+            "RollNo": rollno,
+            "Location": location,
+            "DateLost": ldate,
+            "ItemType": itemtype,
+            "ItemDescription": itemdescription
+        }
+
+        result = Items.delete_one(delete_query)
+
+        History.insert_one({
+            "Email": email,
+            "PhoneNo": phone,
+            "RollNo": rollno,
+            "Location": location,
+            "DateLost": ldate,
+            "ItemType": itemtype,
+            "ItemDescription": itemdescription,
+            "Image" : image
+        })
+
+        if result.deleted_count == 1:
+            print("Document deleted successfully")
+            return jsonify({"message": "Document deleted successfully"}), 200
+        else:
+            print("Document not found for deletion")
+            return jsonify({"message": "Document not found for deletion"}), 404
+    except Exception as e:
+        print("Error:", e)
+        return jsonify({"error": str(e)}), 500
 if __name__ == "__main__":
     app.run(debug=True, port=8080)

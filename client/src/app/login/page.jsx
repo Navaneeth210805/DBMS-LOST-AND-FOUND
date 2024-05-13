@@ -105,7 +105,7 @@ const LoginPage = () => {
                 )}
             </div>
             <div className="text-white mt-12 text-2xl ">
-                DON'T HAVE AN ACCOUNT YET? <Link className="text-indigo-400 underline" href={"/signup"}>SIGNUP</Link> NOW FOR A DATE WITH NAVANEETHAKRISHNAN.
+                DON'T HAVE AN ACCOUNT YET? <Link className="text-indigo-400 underline" href={"/signup"}>SIGNUP</Link>
             </div>
         </main>
     );
