@@ -322,7 +322,7 @@ def check_role():
 
 
 @app.route("/api/found_history", methods=["GET"])
-def get_found_items():
+def get_found_items_history():
     FoundHistory = db["Found_History"]
     try:
         found_history = list(FoundHistory.find({},{'_id' : 0}))
@@ -331,7 +331,7 @@ def get_found_items():
         return jsonify({"message": "An error occurred while processing the request", "error": str(e)}), 500
 
 @app.route("/api/lost_history", methods=["GET"])
-def get_found_items():
+def get_found_items_history():
     LostHistory = db["Lost_History"]
     try:
         lost_history = list(LostHistory.find({},{'_id' : 0}))
