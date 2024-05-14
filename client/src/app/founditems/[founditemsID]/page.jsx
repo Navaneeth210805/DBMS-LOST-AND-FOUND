@@ -29,7 +29,7 @@ const FoundItems = ({params}) => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-40 place-content-center">
                     {foundItems.map((item, index) => (
                         <div key={index}>
-                            <FoundCard item={item} />
+                            <FoundCard item={item} rollno = {params.founditemsID}/>
                         </div>
                     ))}
                 </div>

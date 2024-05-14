@@ -35,7 +35,11 @@ const handleUpdate = async ({item}) =>{
 }
 
 
-const Card = ({ item }) => {
+const Card = ({ item ,rollno}) => {
+    
+    const x = item.RollNo;
+    const y = rollno;
+    console.log("X Y",x,y);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const toggleModal = () => {
@@ -77,7 +81,7 @@ const Card = ({ item }) => {
     const handleImageClick = () => {
         toggleModal();
     };
-
+    
 
     return (
         <div className='flex flex-col justify-center bg-transparent border-2 backdrop-blur-3xl border-indigo-800 shadow-md shadow-indigo-500/75 p-2 w-100 h-100 lg:w-116 lg:h-116 rounded-xl cursor-pointer'>
@@ -129,11 +133,13 @@ const Card = ({ item }) => {
                     </div>
                 )}
             </div>
+            {x === y || y=="admin" ?(
             <div 
             className='flex flex-row justify-center'>
                 <button className='m-2 bg-indigo-500 p-2 rounded-lg text-white font-bold' onClick={() => handleUpdate({item})}>Update Status</button>
                 <button className='m-2 bg-indigo-500 p-2 rounded-lg text-white font-bold'>Alter Details</button>
             </div>
+            ) : <div></div>}
         </div>
     );
 };
