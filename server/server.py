@@ -199,6 +199,7 @@ def get_found_items():
         return jsonify({"message": "An error occurred while processing the request", "error": str(e)}), 500
 
 
+
 @app.route("/api/state", methods=["GET"])
 def states():
     global current_state
@@ -209,6 +210,7 @@ def states1():
     global current_state
     current_state=False
     return  jsonify("Logged out")
+
 
 @app.route("/api/update", methods=["POST"])
 def update():
@@ -316,6 +318,27 @@ def check_role():
             return jsonify({"role": None}), 200
     except Exception as e:
         return jsonify({"message": "An error occurred while processing the request", "error": str(e)}), 500
+
+
+
+@app.route("/api/found_history", methods=["GET"])
+def get_found_items():
+    FoundHistory = db["Found_History"]
+    try:
+        found_history = list(FoundHistory.find({},{'_id' : 0}))
+        return jsonify({"found_history": found_history}), 200
+    except Exception as e:
+        return jsonify({"message": "An error occurred while processing the request", "error": str(e)}), 500
+
+@app.route("/api/lost_history", methods=["GET"])
+def get_found_items():
+    LostHistory = db["Lost_History"]
+    try:
+        lost_history = list(LostHistory.find({},{'_id' : 0}))
+        return jsonify({"found_history": lost_history}), 200
+    except Exception as e:
+        return jsonify({"message": "An error occurred while processing the request", "error": str(e)}), 500
+
 
 if __name__ == "__main__":
     app.run(debug=True, port=8080)
