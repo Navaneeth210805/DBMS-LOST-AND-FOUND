@@ -24,7 +24,7 @@ const LostItemsHistory = ({ params }) => {
 
   const filteredLostItems = lostItemsHistory.filter(item => item.RollNo === params.losthistoryID);
   console.log(filteredLostItems)
-
+  console.log(params)
   return (
     <div className=''>
       <Navbar userID={params.losthistoryID} />
