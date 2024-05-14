@@ -1,11 +1,11 @@
 "use client";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import Navbar from "../(components)/navbar";
+import Navbar from "@/app/(components)/navbar";
 import Link from "next/link";
 
 
-const GetState = () => {
+const GetState = ( { params } ) => {
   const [loading,setisloading] = useState(false)  
 
   useEffect(() => {
@@ -49,7 +49,7 @@ const page = () => {
         const [showFirstText, setShowFirstText] = useState(false);
         const [showSecondText, setShowSecondText] = useState(false);
         const [showThirdText, setShowThirdText] = useState(false);
-      
+        console.log(params.homeID);
         useEffect(() => {
           const firstTextTimeout = setTimeout(() => {
             setShowFirstText(true);
@@ -72,13 +72,13 @@ const page = () => {
       
         return (
           <main>
-            <Navbar />
+            <Navbar userID={params.homeID}/>
             {loading ? (
               <div className="loading-screen flex flex-col items-center justify-center  p-10 m-10">
               {showFirstText && (
                 <div className="falling-texts space-y-4 text-4xl text-purple-400 font-bold">
                   <div className="falling-text text-4xl md:text-6xl lg:text-7xl">
-                    <div className="text-white text-center">HAVE LOST OR FOUND SOMETHING?</div>
+                    <div className="text-white text-center">{`Hello ${params.homeID}`} HAVE LOST OR FOUND SOMETHING?</div>
                   </div>
                 </div>
               )}

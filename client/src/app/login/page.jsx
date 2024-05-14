@@ -11,6 +11,7 @@ const LoginPage = () => {
     const [message, setMessage] = useState("");
     const [loaded, setLoaded] = useState(false);
     const [pwddisplay, setPwdDisplay] = useState(false);
+    const [roll,setroll] = useState('None');
 
     useEffect(() => {
         // Simulate loading with a delay
@@ -46,7 +47,8 @@ const LoginPage = () => {
             }
 
             const data = await response.json();
-            setMessage(data.message);
+            setroll(data[1].rollno);
+            setMessage(data[0].message);
         } catch (error) {
             console.error("Error:", error);
             setMessage("Error registering user.");
@@ -99,7 +101,7 @@ const LoginPage = () => {
                 </Link>
                 <div className="flex justify-center items-center">{message}</div>
                 {message === "Login Successful" && (
-                    <Link href="/home">
+                    <Link href={`/home/${rollno}`}>
                         <div className="flex justify-center item-center hover:text-indigo-500">Click to go further</div>
                     </Link>
                 )}

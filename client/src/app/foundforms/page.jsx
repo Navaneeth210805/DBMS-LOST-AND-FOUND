@@ -32,7 +32,7 @@ const FoundForm = () => {
           phone_no: phone,
           roll_no: rollno,
           location: location,
-          ldate: fdate,
+          fdate: fdate,
           itemtype: itemtype,
           itemdescription: itemdescription,
           image: image_data
@@ -50,7 +50,7 @@ const FoundForm = () => {
         phone_no: phone,
         roll_no: rollno,
         location: location,
-        ldate: fdate,
+        fdate: fdate,
         itemtype: itemtype,
         itemdescription: itemdescription,
         image: "null"
@@ -83,7 +83,7 @@ const FoundForm = () => {
   };
   return (
     <main className="min-h-screen flex items-center justify-center">
-      <div className="p-8 bg-white rounded-xl shadow-md w-full max-w-sm md:max-w-md lg:max-w-md xl:max-w-md transform transition-transform duration-500">
+      <div className="p-8 m-6 bg-white rounded-xl shadow-md w-full max-w-sm md:max-w-md lg:max-w-md xl:max-w-md transform transition-transform duration-500">
         <div className="mb-10 text-center text-4xl text-indigo-600">
           FOUND ITEMS FORMS
         </div>

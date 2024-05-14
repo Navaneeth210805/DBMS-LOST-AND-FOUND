@@ -1,12 +1,12 @@
 "use client"
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Navbar from '../(components)/navbar';
-import Card from '../(components)/card';
+import Navbar from '@/app/(components)/navbar';
+import Card from '@/app/(components)/card';
 
-const LostItems = () => {
+const LostItems = ( { params } ) => {
   const [lostItems, setLostItems] = useState([]);
-
+    console.log(params.lostitemsID)
   useEffect(() => {
     const fetchLostItems = async () => {
       try {
@@ -23,7 +23,7 @@ const LostItems = () => {
 
   return (
     <div className=''>
-      <Navbar/>
+      <Navbar userID = {params.lostitemsID}/>
       <h2 className='text-white flex justify-center text-5xl'>Lost Items</h2>
       <div className='flex justify-center p-10 mt-28'>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-40 place-content-center">

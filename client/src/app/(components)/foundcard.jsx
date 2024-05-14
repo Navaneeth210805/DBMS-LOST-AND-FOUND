@@ -1,39 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import Image from 'next/image';
-
-const handleUpdate = async ({item}) =>{
-    try{
-        const response = await fetch('http://127.0.0.1:8080/api/update_from_found',{
-            method:'POST',
-            body : new URLSearchParams({
-                email: item.Email,
-                phone_no: item.PhoneNo,
-                roll_no: item.RollNo,
-                location: item.Location,
-                ldate: item.DateLost,
-                itemtype: item.ItemType,
-                itemdescription: item.ItemDescription,
-                image : item.Image
-            })
-        });
-
-        if(response.ok)
-        {
-            console.log("Removed")
-            window.location.reload();
-
-        }
-        else
-        {
-            console.log("Error in removing")
-        }
-    }
-    catch(error)
-    {
-        console.error(error)
-    }
-}
-
+import React from 'react'
+import { useState, useEffect } from 'react';
 
 const FoundCard = ({ item }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -107,7 +73,7 @@ const FoundCard = ({ item }) => {
                         <span className="mr-2">Location:</span> <span>{item.Location}</span>
                     </div>
                     <div className="mb-2">
-                        <span className="mr-2">Date Found:</span> <span>{item.DateLost}</span>
+                        <span className="mr-2">Date Found:</span> <span>{item.DateFound}</span>
                     </div>
                     <div className="mb-2">
                         <span className="mr-2">Item Type:</span> <span>{item.ItemType}</span>
@@ -119,13 +85,13 @@ const FoundCard = ({ item }) => {
             </div>
             <div className='flex flex-row justify-center'>
                 {item.Image ? (
-                    <img src={item.Image} alt="No Image Uploaded" className="mt-1 w-50 h-32 flex justify-center cursor-pointer" onClick={handleImageClick} />
+                    <img src={item.Image} alt="No Image" className="mt-1 w-50 h-32 flex justify-center cursor-pointer" onClick={handleImageClick} />
                 ) : (
                     <div className="mt-3 flex justify-center text-white w-full h-32">No Image Uploaded</div>
                 )}
                 {isModalOpen && (
                     <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-75 z-50 text-white" onClick={toggleModal}>
-                        <img src={item.Image} alt="No Image Uploaded" className="text-white" />
+                        <img src={item.Image} alt="No Image" className="text-white" />
                     </div>
                 )}
             </div>
