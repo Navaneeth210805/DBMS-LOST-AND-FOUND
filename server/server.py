@@ -24,7 +24,7 @@ def register():
     global current_state
     login_details = db['login_details']
     session_state=db['Session_State']
-    try:
+    try:    
         rollno = request.form.get('rollno')
         password = request.form.get('password')
 
@@ -278,7 +278,7 @@ def update_fron_found():
             "PhoneNo": phone,
             "RollNo": rollno,
             "Location": location,
-            "DateLost": ldate,
+            "DateFound": ldate,
             "ItemType": itemtype,
             "ItemDescription": itemdescription
         }
