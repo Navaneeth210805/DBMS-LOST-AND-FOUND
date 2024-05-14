@@ -10,7 +10,7 @@ const handleUpdate = async ({item}) =>{
                 phone_no: item.PhoneNo,
                 roll_no: item.RollNo,
                 location: item.Location,
-                ldate: item.DateLost,
+                ldate: item.DateFound,
                 itemtype: item.ItemType,
                 itemdescription: item.ItemDescription,
                 image : item.Image
@@ -107,7 +107,7 @@ const FoundCard = ({ item , rollno}) => {
                         <span className="mr-2">Location:</span> <span>{item.Location}</span>
                     </div>
                     <div className="mb-2">
-                        <span className="mr-2">Date Found:</span> <span>{item.DateLost}</span>
+                        <span className="mr-2">Date Found:</span> <span>{item.DateFound}</span>
                     </div>
                     <div className="mb-2">
                         <span className="mr-2">Item Type:</span> <span>{item.ItemType}</span>
