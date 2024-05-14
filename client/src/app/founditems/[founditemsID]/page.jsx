@@ -1,10 +1,10 @@
 "use client";
 import React, { useState, useEffect } from 'react'
-import Navbar from '../(components)/navbar';
+import Navbar from '@/app/(components)/navbar';
 import axios from 'axios';
-import FoundCard from '../(components)/card2';
+import FoundCard from '@/app/(components)/foundcard';
 
-const FoundItems = () => {
+const FoundItems = ({params}) => {
     const [foundItems, setFoundItems] = useState([]);
     useEffect(() => {
         const fetchFoundItems = async () => {
@@ -23,7 +23,7 @@ const FoundItems = () => {
 
     return (
         <div className=''>
-            <Navbar />
+            <Navbar userID = {params.founditemsID}/>
             <h2 className='text-white flex justify-center text-5xl'>Found Items</h2>
             <div className='flex justify-center p-10 mt-28'>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-40 place-content-center">

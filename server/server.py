@@ -38,7 +38,7 @@ def register():
                     {"Logged_in_IDS" : rollno}
                 ).inserted_id
                 current_state=True
-                return jsonify({"message": "Login Successful"})
+                return jsonify({"message": "Login Successful"}, {"rollno":rollno})
             else:
                 return jsonify({"message": "Incorrect Username or Password"})
         else:
@@ -144,7 +144,7 @@ def register3():
         phone = request.form.get('phone_no')
         rollno = request.form.get("roll_no")
         location = request.form.get("location")
-        ldate = request.form.get("ldate")
+        fdate = request.form.get("fdate")
         itemtype = request.form.get("itemtype")
         itemdescription = request.form.get("itemdescription")
         image_data=request.form.get("image")
@@ -154,7 +154,7 @@ def register3():
             phone is not None and phone.strip() and
             rollno is not None and rollno.strip() and
             location is not None and location.strip() and
-            ldate is not None and ldate.strip() and
+            fdate is not None and fdate.strip() and
             itemtype is not None and itemtype.strip() and
             itemdescription is not None and itemdescription.strip() and
             image_data is not None and  image_data.strip()):
@@ -165,9 +165,9 @@ def register3():
                     "PhoneNo": phone,
                     "RollNo": rollno,
                     "Location": location,
-                    "DateLost": ldate,
+                    "DateFound": fdate,
+                    "ItemDescription" : itemdescription,
                     "ItemType": itemtype,
-                    "ItemDescription": itemdescription,
                     "Image": image_data
                 }
             ).inserted_id
