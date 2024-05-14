@@ -12,7 +12,6 @@ const FoundItems = ({params}) => {
                 const response = await axios.get('http://127.0.0.1:8080/api/found_items');
                 console.log('Fetched data:', response.data.found_item);
                 setFoundItems(response.data.found_item);
-                console.log(foundItems)
             } catch (error) {
                 console.error('Error fetching lost items:', error);
             }

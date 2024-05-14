@@ -5,34 +5,34 @@ import Navbar from '@/app/(components)/navbar';
 import LostHistoryCard from '@/app/(components)/lost_history_card';
 
 const LostItemsHistory = ({ params }) => {
-  const [lostItemsHistory, setLostItemsHistory] = useState([]);
+  const [foundItemsHistory, setFoundItemsHistory] = useState([]);
   
   useEffect(() => {
     const fetchLostItems = async () => {
       try {
-        const response = await axios.get(`http://127.0.0.1:8080/api/lost_history`);
-        console.log('Fetched data:', response.data.lost_history);
-        setLostItemsHistory(response.data.lost_history);
-        console.log(lostItemsHistory);
+        const response = await axios.get(`http://127.0.0.1:8080/api/found_history`);
+        console.log('Fetched data:', response.data.found_history);
+        setFoundItemsHistory(response.data.found_history);
+        console.log(foundItemsHistory);
       } catch (error) {
         console.error('Error fetching lost items:', error);
       }
     };
 
     fetchLostItems();
-  }, [params.losthistoryID]);
+  }, [params.foundhistoryID]);
 
-  const filteredLostItems = lostItemsHistory.filter(item => item.RollNo === params.losthistoryID);
-  console.log(filteredLostItems)
+  const filteredFoundItems = foundItemsHistory.filter(item => item.RollNo === params.foundhistoryID);
+  console.log(filteredFoundItems)
 
   return (
     <div className=''>
       <Navbar userID={params.losthistoryID} />
-      <h2 className='text-white flex justify-center text-5xl'>Lost History</h2>
+      <h2 className='text-white flex justify-center text-5xl'>Found History</h2>
       <div className='flex justify-center p-10 mt-28'>
-        {filteredLostItems && filteredLostItems.length > 0 ? (
+        {filteredFoundItems && filteredFoundItems.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-40 place-content-center">
-            {filteredLostItems.map((item, index) => (
+            {filteredFoundItems.map((item, index) => (
               <div key={index}>
                 <LostHistoryCard item={item} />
               </div>
