@@ -38,7 +38,9 @@ const Navbar = (props) => {
           <div className="h-full border-l border-indigo-700 mx-4"></div>
         </div>
         <div className="hidden lg:flex items-center">
+          <Link href={`/losthistory/${navID}`}>
           <h1 className="text-white">LOST HISTORY</h1>
+          </Link>
           <div className="h-full border-l border-indigo-700 mx-4"></div>
         </div>
         <div className="hidden lg:flex items-center">

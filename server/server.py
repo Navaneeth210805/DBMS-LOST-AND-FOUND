@@ -332,13 +332,15 @@ def get_found_items_history():
 
 
 @app.route("/api/lost_history", methods=["GET"])
-def get_lost_items_history():  # Rename this function to get_lost_items_history
+def get_lost_items_history(): 
     LostHistory = db["Lost_History"]
     try:
         lost_history = list(LostHistory.find({},{'_id' : 0}))
-        return jsonify({"found_history": lost_history}), 200
+        return jsonify({"lost_history": lost_history}), 200
     except Exception as e:
         return jsonify({"message": "An error occurred while processing the request", "error": str(e)}), 500
+
+
 
 if __name__ == "__main__":
     app.run(debug=True, port=8080)
