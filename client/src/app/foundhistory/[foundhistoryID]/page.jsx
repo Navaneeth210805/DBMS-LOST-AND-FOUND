@@ -27,7 +27,7 @@ const LostItemsHistory = ({ params }) => {
 
   return (
     <div className=''>
-      <Navbar userID={params.losthistoryID} />
+      <Navbar userID={params.foundhistoryID} />
       <h2 className='text-white flex justify-center text-5xl'>Found History</h2>
       <div className='flex justify-center p-10 mt-28'>
         {filteredFoundItems && filteredFoundItems.length > 0 ? (

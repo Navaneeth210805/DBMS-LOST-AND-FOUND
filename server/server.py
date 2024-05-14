@@ -339,6 +339,16 @@ def get_lost_items_history():
         return jsonify({"lost_history": lost_history}), 200
     except Exception as e:
         return jsonify({"message": "An error occurred while processing the request", "error": str(e)}), 500
+    
+@app.route("/api/profile", methods=["GET"])
+def get_profile(): 
+    Profile = db["student"]
+    try:
+        profile_table = list(Profile.find({},{'_id' : 0}))
+        # print(profile_table)
+        return jsonify({"profile_table": profile_table}), 200
+    except Exception as e:
+        return jsonify({"message": "An error occurred while processing the request", "error": str(e)}), 500
 
 
 

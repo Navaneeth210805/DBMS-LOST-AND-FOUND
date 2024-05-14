@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 
-const FoundForm = () => {
+const FoundForm = ({params}) => {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [rollno, setRollno] = useState("");
@@ -203,7 +203,7 @@ const FoundForm = () => {
           </button>
           {/* </Link> */}
         </form>
-        <Link href={"/home"}>
+        <Link href={`/home/${params.foundformsID}`}>
           <div className="text-xl font-medium flex justify-center items-center hover:text-indigo-600 cursor-pointer">
             Return To HomePage
           </div>
