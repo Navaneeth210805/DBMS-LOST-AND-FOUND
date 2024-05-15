@@ -123,7 +123,7 @@ const Card = ({ item ,rollno}) => {
             </div>
             <div className='flex flex-row justify-center'>
                 {item.Image ? (
-                    <img src={item.Image} alt="No Image" className="mt-1 w-50 h-32 flex justify-center cursor-pointer" onClick={handleImageClick} />
+                    <img src={item.Image} alt="No Image" className="mt-1 w-50 h-32 text-white flex justify-center cursor-pointer" onClick={handleImageClick} />
                 ) : (
                     <div className="mt-3 flex justify-center text-white w-full h-32">No Image Uploaded</div>
                 )}
