@@ -1,38 +1,35 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 
-const handleUpdate = async ({item}) =>{
-    try{
-        const response = await fetch('http://127.0.0.1:8080/api/update',{
-            method:'POST',
-            body : new URLSearchParams({
-                email: item.Email,
-                phone_no: item.PhoneNo,
-                roll_no: item.RollNo,
-                location: item.Location,
-                ldate: item.DateLost,
-                itemtype: item.ItemType,
-                itemdescription: item.ItemDescription,
-                image : item.Image
-            })
-        });
+const handleUpdate = async ({item}) => {
+    try {
+        const finderRollNo = window.prompt("Enter the finder's Roll Number:");
 
-        if(response.ok)
-        {
-            console.log("Removed")
-            window.location.reload();
+        if (finderRollNo !== null) {
+            const response = await fetch('http://127.0.0.1:8080/api/update', {
+                method:'POST',
+                body: new URLSearchParams({
+                    email: item.Email,
+                    phone_no: item.PhoneNo,
+                    roll_no: item.RollNo,
+                    location: item.Location,
+                    ldate: item.DateLost,
+                    itemtype: item.ItemType,
+                    itemdescription: item.ItemDescription,
+                    image: item.Image,
+                    finder_roll_no: finderRollNo
+                })
+            });
 
+            if(response.ok) {
+                window.location.reload();
+            }
         }
-        else
-        {
-            console.log("Error in removing")
-        }
+    } catch(error) {
+        console.error(error);
     }
-    catch(error)
-    {
-        console.error(error)
-    }
-}
+};
+
 
 
 const Card = ({ item ,rollno}) => {

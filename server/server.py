@@ -335,6 +335,7 @@ def update():
     itemtype = request.form.get("itemtype")
     itemdescription = request.form.get("itemdescription")
     image =  request.form.get("image")
+    finder = request.form.get("finder_roll_no")
     print(email,phone,rollno,location,ldate,itemtype,itemdescription)
     try:
         delete_query = {
@@ -357,7 +358,8 @@ def update():
             "DateLost": ldate,
             "ItemType": itemtype,
             "ItemDescription": itemdescription,
-            "Image" : image
+            "Image" : image,
+            "Finders_Roll_No" : finder
         })
 
         if result.deleted_count == 1:
@@ -371,7 +373,7 @@ def update():
         return jsonify({"error": str(e)}), 500
 
 @app.route("/api/update_from_found",methods=["POST"])
-def update_fron_found():
+def update_from_found():
     History = db["Found_History"]
     Items = db["found_items"]
     email = request.form.get('email')
@@ -382,6 +384,7 @@ def update_fron_found():
     itemtype = request.form.get("itemtype")
     itemdescription = request.form.get("itemdescription")
     image =  request.form.get("image")
+    user = request.form.get("receiver")
     print(email,phone,rollno,location,ldate,itemtype,itemdescription)
     try:
         delete_query = {
@@ -404,7 +407,8 @@ def update_fron_found():
             "DateLost": ldate,
             "ItemType": itemtype,
             "ItemDescription": itemdescription,
-            "Image" : image
+            "Image" : image,
+            "Receiver_Roll_No" : user
         })
 
         if result.deleted_count == 1:

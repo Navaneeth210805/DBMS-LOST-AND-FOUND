@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Navbar from '@/app/(components)/navbar';
 import LostHistoryCard from '@/app/(components)/lost_history_card';
+import FoundHistoryCard from '@/app/(components)/found_history_card';
 
 const LostItemsHistory = ({ params }) => {
   const [foundItemsHistory, setFoundItemsHistory] = useState([]);
@@ -34,7 +35,7 @@ const LostItemsHistory = ({ params }) => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-40 place-content-center">
             {filteredFoundItems.map((item, index) => (
               <div key={index}>
-                <LostHistoryCard item={item} />
+                <FoundHistoryCard item={item} />
               </div>
             ))}
           </div>

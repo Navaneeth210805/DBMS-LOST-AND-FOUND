@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 
 const handleUpdate = async ({item}) =>{
+    const receiverRollNo = window.prompt("Enter the receiver's Roll Number:");
+
     try{
         const response = await fetch('http://127.0.0.1:8080/api/update_from_found',{
             method:'POST',
@@ -13,7 +15,8 @@ const handleUpdate = async ({item}) =>{
                 ldate: item.DateFound,
                 itemtype: item.ItemType,
                 itemdescription: item.ItemDescription,
-                image : item.Image
+                image : item.Image,
+                receiver : receiverRollNo
             })
         });
 

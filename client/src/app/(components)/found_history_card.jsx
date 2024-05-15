@@ -73,13 +73,16 @@ const FoundHistoryCard = ({ item }) => {
                         <span className="mr-2">Location:</span> <span>{item.Location}</span>
                     </div>
                     <div className="mb-2">
-                        <span className="mr-2">Date Found:</span> <span>{item.DateFound}</span>
+                        <span className="mr-2">Date Found:</span> <span>{item.DateLost}</span>
                     </div>
                     <div className="mb-2">
                         <span className="mr-2">Item Type:</span> <span>{item.ItemType}</span>
                     </div>
                     <div className="mb-2">
                         <span className="mr-2">Item Description:</span> <span className="break-all">{item.ItemDescription}</span>
+                    </div>
+                    <div className="mb-2">
+                        <span className="mr-2">Received by:</span> <span>{item.Receiver_Roll_No}</span>
                     </div>
                 </div>
             </div>
