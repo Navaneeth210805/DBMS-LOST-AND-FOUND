@@ -39,55 +39,61 @@ const LostItems = ( { params}) => {
 
   return (
     
-    <div className=''>
-      <div>
-      {rollsearching=="null" ?
-        (<input type="text"
-        value =""
-        onChange={(e)=>setsearch(e.target.value)} 
-        placeholder='Search for rollno'       
-      />):
-        (<input type="text"
-        value ={rollsearching}
-        onChange={(e)=>setsearch(e.target.value)} 
-        placeholder='Search for rollno'       
-        />)
-      }
-      
-      </div>
-      <div>
-      {itemsearching=="null" ?
-        (<input type="text"
-        value =""
-        onChange={(e)=>setitem(e.target.value)} 
-        placeholder='Search for item'       
-      />):
-        (<input type="text"
-        value ={itemsearching}
-        onChange={(e)=>setitem(e.target.value)} 
-        placeholder='Search for item'       
-        />)
-      }
-      </div>
-
-      <div>
-        <input type="date"
-         value = {datesearching}
-         onChange={(e)=>setdate(e.target.value)}
-         placeholder='Date search'
-         inputMode='numeric'
-         min="1997-01-01"
-         max="2099-12-31"
-         />
-      </div>
-
-      <div>
-          <button onClick={handlesubmit}>Submit</button>
-      </div>
-
+    <div className='flex flex-col justify-center items-center'>
       <Navbar userID = {params.lostitemsID}/>
-      <h2 className='text-white flex justify-center text-5xl'>Lost Items</h2>
-      <div className='flex justify-center p-10 mt-28'>
+      <h2 className='text-white flex justify-center text-5xl mb-8'>Lost Items</h2>
+      <div className='flex flex-row justify-center bg-white px-2 py-4 rounded-lg shadow-md shadow-indigo-500 w-5/7'>
+                <div className='mr-10 ml-10 flex flex-col justify-center items-center'>
+                    {rollsearching == "null" ?
+                        (<input type="text"
+                            value=""
+                            onChange={(e) => setsearch(e.target.value)}
+                            placeholder='Search by rollno'
+                            className="p-2 focus:outline-indigo-800 rounded-lg border-2 border-indigo-300"
+                        />) :
+                        (<input type="text"
+                            value={rollsearching}
+                            onChange={(e) => setsearch(e.target.value)}
+                            placeholder='Search by rollno'
+                            className="p-2 focus:outline-indigo-800 rounded-lg border-2 border-indigo-300"
+                        />)
+                    }
+
+                </div>
+                <div className = "mr-10 ml-10 flex flex-col justify-center items-center">
+                    {itemsearching == "null" ?
+                        (<input type="text"
+                            value=""
+                            onChange={(e) => setitem(e.target.value)}
+                            placeholder='Search by item type'
+                            className="p-2 focus:outline-indigo-800 rounded-lg border-2 border-indigo-300"
+                        />) :
+                        (<input type="text"
+                            value={itemsearching}
+                            onChange={(e) => setitem(e.target.value)}
+                            placeholder='Search by item type'
+                            className="p-2 focus:outline-indigo-800 rounded-lg border-2 border-indigo-300"
+                        />)
+                    }
+                </div>
+
+                <div className = "mr-10 ml-10 flex flex-col justify-center items-center">
+                    <input type="date"
+                        value={datesearching}
+                        onChange={(e) => setdate(e.target.value)}
+                        placeholder='Date search'
+                        inputMode='numeric'
+                        min="1997-01-01"
+                        max="2099-12-31"
+                        className="p-2 focus:outline-indigo-800 rounded-lg border-2 border-indigo-300"
+                    />
+                </div>
+
+                <div className = "mr-10 ml-10 flex flex-col justify-center items-center">
+                    <button className='p-2 bg-indigo-600 rounded-lg px-4 text-white font-bold focus:bg-white focus:text-black focus:border-2 focus:border-indigo-800' onClick={handlesubmit}>Submit</button>
+                </div>
+            </div>
+      <div className='flex justify-center p-10 mt-10'>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-40 place-content-center">
         {lostItems.map((item, index) => (
           <div key={index}>
