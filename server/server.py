@@ -179,24 +179,135 @@ def register3():
         return jsonify({"message": "An error occurred while processing the request", "error": str(e)}), 500
 
 
-@app.route("/api/lost_items", methods=["GET"])
+@app.route("/api/lost_items", methods=["GET","POST"])
 def get_lost_items():
+    data1 = request.args.get('rollno')
+    data2 = request.args.get('item')
+    data3 = request.args.get('date')
     LostItems = db["lost_items"]
-    try:
-        lost_item = list(LostItems.find({},{'_id' : 0}))
-        return jsonify({"lost_item": lost_item}), 200
-    except Exception as e:
-        return jsonify({"message": "An error occurred while processing the request", "error": str(e)}), 500
+    if data1=="null" and data2=="null" and data3=="null":
+        try:
+            lost_item = list(LostItems.find({},{'_id' : 0}))
+            print(lost_item)
+            return jsonify({"lost_item": lost_item}), 200
+        except Exception as e:
+            return jsonify({"message": "An error occurred while processing the request", "error": str(e)}), 500
+    elif data1=="null" and data2=="null" and data3!="null":
+        try:
+            lost_item = list(LostItems.find({'DateLost' : data3},{'_id' : 0}))
+            print(lost_item)
+            return jsonify({"lost_item": lost_item}), 200
+        except Exception as e:
+            return jsonify({"message": "An error occurred while processing the request", "error": str(e)}), 500
+    elif data1=="null" and data2!="null" and data3=="null":
+        try:
+            lost_item = list(LostItems.find({'ItemType' : data2},{'_id' : 0}))
+            print(lost_item)
+            return jsonify({"lost_item": lost_item}), 200
+        except Exception as e:
+            return jsonify({"message": "An error occurred while processing the request", "error": str(e)}), 500
+    elif data1!="null" and data2=="null" and data3=="null":
+        try:
+            lost_item = list(LostItems.find({'RollNo' : data1},{'_id' : 0}))
+            print(lost_item)
+            return jsonify({"lost_item": lost_item}), 200
+        except Exception as e:
+            return jsonify({"message": "An error occurred while processing the request", "error": str(e)}), 500
+    elif data1!="null" and data2!="null" and data3=="null":
+        try:
+            lost_item = list(LostItems.find({'RollNo' : data1},{'ItemType' : data2},{'_id' : 0}))
+            print(lost_item)
+            return jsonify({"lost_item": lost_item}), 200
+        except Exception as e:
+            return jsonify({"message": "An error occurred while processing the request", "error": str(e)}), 500
+    elif data1!="null" and data2=="null" and data3!="null":
+        try:
+            lost_item = list(LostItems.find({'RollNo' : data1},{'DateLost' : data3},{'_id' : 0}))
+            print(lost_item)
+            return jsonify({"lost_item": lost_item}), 200
+        except Exception as e:
+            return jsonify({"message": "An error occurred while processing the request", "error": str(e)}), 500
+    elif data1=="null" and data2!="null" and data3!="null":
+        try:
+            lost_item = list(LostItems.find({'ItemType' : data2},{'DateLost' : data3},{'_id' : 0}))
+            print(lost_item)
+            return jsonify({"lost_item": lost_item}), 200
+        except Exception as e:
+            return jsonify({"message": "An error occurred while processing the request", "error": str(e)}), 500
+    
+    else:
+        try:
+            lost_item = list(LostItems.find({'RollNo' : data1},{'ItemType' : data2},{'DateLost' : data3},{'_id' : 0}))
+            print("Lostitem :",lost_item)
+            return jsonify({"lost_item": lost_item}), 200
+        except Exception as e:
+            return jsonify({"message": "An error occurred while processing the request", "error": str(e)}), 500
     
 
 @app.route("/api/found_items", methods=["GET"])
 def get_found_items():
     FoundItems = db["found_items"]
-    try:
-        found_item = list(FoundItems.find({},{'_id' : 0}))
-        return jsonify({"found_item": found_item}), 200
-    except Exception as e:
-        return jsonify({"message": "An error occurred while processing the request", "error": str(e)}), 500
+    data1 = request.args.get('rollno')
+    data2 = request.args.get('item')
+    data3 = request.args.get('date')
+    if data1=="null" and data2=="null" and data3=="null":
+        try:
+            found_item = list(FoundItems.find({},{'_id' : 0}))
+            print(found_item)
+            return jsonify({"found_item": found_item}), 200
+        except Exception as e:
+            return jsonify({"message": "An error occurred while processing the request", "error": str(e)}), 500
+    elif data1=="null" and data2=="null" and data3!="null":
+        try:
+            found_item = list(FoundItems.find({'DateFound' : data3},{'_id' : 0}))
+            print(found_item)
+            return jsonify({"found_item": found_item}), 200
+        except Exception as e:
+            return jsonify({"message": "An error occurred while processing the request", "error": str(e)}), 500
+    elif data1=="null" and data2!="null" and data3=="null":
+        try:
+            found_item = list(FoundItems.find({'ItemType' : data2},{'_id' : 0}))
+            print(found_item)
+            return jsonify({"found_item": found_item}), 200
+        except Exception as e:
+            return jsonify({"message": "An error occurred while processing the request", "error": str(e)}), 500
+    elif data1!="null" and data2=="null" and data3=="null":
+        try:
+            found_item = list(FoundItems.find({'RollNo' : data1},{'_id' : 0}))
+            print(found_item)
+            return jsonify({"found_item": found_item}), 200
+        except Exception as e:
+            return jsonify({"message": "An error occurred while processing the request", "error": str(e)}), 500
+    elif data1!="null" and data2!="null" and data3=="null":
+        try:
+            found_item = list(FoundItems.find({'RollNo' : data1},{'ItemType' : data2},{'_id' : 0}))
+            print(found_item)
+            return jsonify({"found_item": found_item}), 200
+        except Exception as e:
+            return jsonify({"message": "An error occurred while processing the request", "error": str(e)}), 500
+    elif data1!="null" and data2=="null" and data3!="null":
+        try:
+            found_item = list(FoundItems.find({'RollNo' : data1},{'DateFound' : data3},{'_id' : 0}))
+            print(found_item)
+            return jsonify({"found_item": found_item}), 200
+        except Exception as e:
+            return jsonify({"message": "An error occurred while processing the request", "error": str(e)}), 500
+    elif data1=="null" and data2!="null" and data3!="null":
+        try:
+            found_item = list(FoundItems.find({'ItemType' : data2},{'DateFound' : data3},{'_id' : 0}))
+            print(found_item)
+            return jsonify({"found_item": found_item}), 200
+        except Exception as e:
+            return jsonify({"message": "An error occurred while processing the request", "error": str(e)}), 500
+
+    else:
+        try:
+            found_item = list(FoundItems.find({'RollNo' : data1},{'ItemType' : data2},{'DateFound' : data3},{'_id' : 0}))
+            print("Found item:", found_item)
+            return jsonify({"found_item": found_item}), 200
+        except Exception as e:
+            return jsonify({"message": "An error occurred while processing the request", "error": str(e)}), 500
+
 
 
 
