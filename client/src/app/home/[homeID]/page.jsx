@@ -78,7 +78,7 @@ const page = () => {
               {showThirdText && (
                 <div className="falling-texts space-y-4 text-4xl text-purple-400 font-bold">
                   <div className="falling-text2 text-2xl md:text-4xl lg:text-5xl p-1 my-4">
-                    <Link href="/lostforms">
+                    <Link href={`/lostforms/${params.homeID}`}>
                       <div className="text-white hover:text-purple-700 text-center">
                         Want to report something LOST? Click here
                       </div>
@@ -89,7 +89,7 @@ const page = () => {
               {showThirdText && (
                 <div className="falling-texts space-y-4 text-4xl text-purple-400 font-bold">
                   <div className="falling-text2 text-2xl md:text-4xl lg:text-5xl p-1 my-4">
-                    <Link href="/foundforms">
+                    <Link href={`/foundforms/${params.homeID}`}>
                       <div className="text-white hover:text-purple-700 text-center">
                         Want to report something FOUND? Click here
                       </div>
